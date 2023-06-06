@@ -26,6 +26,7 @@ import VillaIcon from '@mui/icons-material/Villa';
 import PersonIcon from '@mui/icons-material/Person';
 
 import { Menu, MenuItem, Stack } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -76,6 +77,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function RootLayout({ children }) {
+  const navigate = useNavigate()
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -127,15 +129,18 @@ export default function RootLayout({ children }) {
                 'aria-labelledby': 'basic-button',
               }}
             >
-              <MenuItem onClick={handleClose}
+              <MenuItem
+                onClick={() => navigate('/perfil')}
                 sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
                 Perfil
               </MenuItem>
-              <MenuItem onClick={handleClose}
+              <MenuItem
+                onClick={() => navigate('/configuracoes')}
                 sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
                 Configurações
               </MenuItem>
-              <MenuItem onClick={handleClose}
+              <MenuItem
+                onClick={() => navigate('/login')}
                 sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
                 Sair
               </MenuItem>
