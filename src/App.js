@@ -4,9 +4,9 @@ import MainPage from "./pages/main";
 import HomePage from "./pages/home";
 import RootLayout from "./components/RootLayout";
 import './App.css'
-import CustomersPage from "./pages/customers";
 import ProfilePage from "./pages/profile";
 import SettingsPage from "./pages/settings";
+import ResidentsPage from "./pages/residents";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="/perfil" element={<ProfilePage />} />
         <Route path="/configuracoes" element={<SettingsPage />} />
 
-        <Route path="/moradores" element={<CustomersPage />} />
+        <Route path="/moradores" element={<ResidentsPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -3,7 +3,7 @@ import React from 'react'
 import BasicTable from '../../components/BasicTable'
 import MainPage from '../main'
 
-const CustomersPage = () => {
+const ResidentsPage = () => {
   return (
     <MainPage>
       <Stack>
@@ -20,4 +20,4 @@ const CustomersPage = () => {
   )
 }
 
-export default CustomersPage
+export default ResidentsPage
