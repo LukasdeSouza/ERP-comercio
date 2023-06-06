@@ -10,18 +10,27 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import DescriptionIcon from '@mui/icons-material/Description';
+import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
+import VillaIcon from '@mui/icons-material/Villa';
+import PersonIcon from '@mui/icons-material/Person';
+
+import { Menu, MenuItem, Stack } from '@mui/material';
 
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+
   ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
@@ -69,6 +78,16 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function RootLayout({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const openMenu = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -92,9 +111,36 @@ export default function RootLayout({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Meu Condomínio
-          </Typography>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} width={'100%'}>
+            <Typography variant="h6" noWrap component="div" fontFamily={'Poppins'}>
+              Meu Condomínio
+            </Typography>
+            <IconButton onClick={handleClick}>
+              <AccountCircleIcon sx={{ color: '#FFF', fontSize: '32px' }} />
+            </IconButton>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={openMenu}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <MenuItem onClick={handleClose}
+                sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
+                Perfil
+              </MenuItem>
+              <MenuItem onClick={handleClose}
+                sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
+                Configurações
+              </MenuItem>
+              <MenuItem onClick={handleClose}
+                sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
+                Sair
+              </MenuItem>
+            </Menu>
+          </Stack>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -115,7 +161,6 @@ export default function RootLayout({ children }) {
             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
           </IconButton>
         </DrawerHeader>
-        {/* <Divider /> */}
         <List>
           {['Moradores', 'Faturas', 'Comunicado'].map((text, index) => (
             <ListItem key={text} disablePadding>
@@ -123,7 +168,7 @@ export default function RootLayout({ children }) {
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                <Typography fontFamily={'Poppins'} fontSize={14} fontWeight={400}>{text}</Typography>
               </ListItemButton>
             </ListItem>
           ))}

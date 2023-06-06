@@ -4,6 +4,7 @@ import MainPage from "./pages/main";
 import HomePage from "./pages/home";
 import RootLayout from "./components/RootLayout";
 import './App.css'
+import CustomersPage from "./pages/customers";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/moradores" element={<MainPage />} />
+        <Route path="/moradores" element={<CustomersPage />} />
       </Routes>
     </BrowserRouter>
   );

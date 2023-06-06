@@ -4,17 +4,10 @@ import DataTable from '../../components/BasicTable'
 import BasicTable from '../../components/BasicTable'
 import { Typography } from '@mui/material'
 
-const MainPage = () => {
+const MainPage = ({ children }) => {
   return (
     <RootLayout>
-      <Typography
-        fontWeight={600}
-        fontSize={20}
-        fontFamily={'poppins'}
-        color={'#1976d2'}>
-        Lista de Moradores
-      </Typography>
-      <BasicTable />
+      {children}
     </RootLayout>
   )
 }
