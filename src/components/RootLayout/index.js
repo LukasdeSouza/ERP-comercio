@@ -140,7 +140,7 @@ export default function RootLayout({ children }) {
                 Configurações
               </MenuItem>
               <MenuItem
-                onClick={() => navigate('/login')}
+                onClick={() => navigate('/')}
                 sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
                 Sair
               </MenuItem>
@@ -169,7 +169,7 @@ export default function RootLayout({ children }) {
         <List>
           {['Moradores', 'Faturas', 'Comunicado'].map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={() => navigate(`/${text}`)}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
