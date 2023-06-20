@@ -47,7 +47,7 @@ export default function BasicTable() {
               <TableCell align="right">{row.quantity}</TableCell>
               <TableCell align="right">{row.price}</TableCell>
               <TableCell align="right">
-                <IconButton>
+                <IconButton onClick={(e) => console.log(e)}>
                   <EditIcon />
                 </IconButton>
               </TableCell>
