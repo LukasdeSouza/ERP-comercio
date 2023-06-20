@@ -10,6 +10,8 @@ import InvoicesPage from "./pages/invoices";
 import AnnouncementsPage from "./pages/announcements";
 import CommercePage from "./pages/commerce";
 import DashboardPage from "./pages/dashboard";
+import ProductsPage from "./pages/products";
+import EmployeesPage from "./pages/employees";
 
 function App() {
   return (
@@ -20,10 +22,12 @@ function App() {
         <Route path="/perfil" element={<ProfilePage />} />
         <Route path="/configuracoes" element={<SettingsPage />} />
 
-        <Route path="/commerce" element={<CommercePage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/faturas" element={<InvoicesPage />} />
-        <Route path="/comunicado" element={<AnnouncementsPage />} />
+        <Route path="/commerce" element={<CommercePage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/employees" element={<EmployeesPage />} />
+        <Route path="/invoices" element={<InvoicesPage />} />
+        <Route path="/announcements" element={<AnnouncementsPage />} />
       </Routes>
     </BrowserRouter>
   );
