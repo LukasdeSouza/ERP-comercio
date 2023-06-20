@@ -115,7 +115,7 @@ export default function RootLayout({ children }) {
           </IconButton>
           <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} width={'100%'}>
             <Typography variant="h6" noWrap component="div" fontFamily={'Poppins'}>
-              Meu Condomínio
+              ERP Comércio
             </Typography>
             <IconButton onClick={handleClick}>
               <AccountCircleIcon sx={{ color: '#FFF', fontSize: '32px' }} />
@@ -167,13 +167,15 @@ export default function RootLayout({ children }) {
           </IconButton>
         </DrawerHeader>
         <List>
-          {['Moradores', 'Faturas', 'Comunicado'].map((text, index) => (
+          {['Dashboard', 'Produtos', 'Funcionários', 'Faturas', 'Comunicado'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton onClick={() => navigate(`/${text}`)}>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
-                <Typography fontFamily={'Poppins'} fontSize={14} fontWeight={400}>{text}</Typography>
+                <Typography fontFamily={'Poppins'} fontSize={14} fontWeight={400}>
+                  {text}
+                </Typography>
               </ListItemButton>
             </ListItem>
           ))}

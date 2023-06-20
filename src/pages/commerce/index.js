@@ -3,7 +3,7 @@ import React from 'react'
 import BasicTable from '../../components/BasicTable'
 import MainPage from '../main'
 
-const ResidentsPage = () => {
+const CommercePage = () => {
   return (
     <MainPage>
       <Stack>
@@ -12,7 +12,7 @@ const ResidentsPage = () => {
           fontSize={20}
           fontFamily={'poppins'}
           color={'#1976d2'}>
-          Lista de Moradores
+          Lista de Comércios
         </Typography>
         <BasicTable />
       </Stack>
@@ -20,4 +20,4 @@ const ResidentsPage = () => {
   )
 }
 
-export default ResidentsPage
+export default CommercePage

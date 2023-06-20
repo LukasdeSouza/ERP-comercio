@@ -5,9 +5,11 @@ import RootLayout from "./components/RootLayout";
 import './App.css'
 import ProfilePage from "./pages/profile";
 import SettingsPage from "./pages/settings";
-import ResidentsPage from "./pages/residents";
+import ResidentsPage from "./pages/commerce";
 import InvoicesPage from "./pages/invoices";
 import AnnouncementsPage from "./pages/announcements";
+import CommercePage from "./pages/commerce";
+import DashboardPage from "./pages/dashboard";
 
 function App() {
   return (
@@ -18,7 +20,8 @@ function App() {
         <Route path="/perfil" element={<ProfilePage />} />
         <Route path="/configuracoes" element={<SettingsPage />} />
 
-        <Route path="/moradores" element={<ResidentsPage />} />
+        <Route path="/commerce" element={<CommercePage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/faturas" element={<InvoicesPage />} />
         <Route path="/comunicado" element={<AnnouncementsPage />} />
       </Routes>
