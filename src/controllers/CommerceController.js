@@ -1,16 +1,16 @@
 import { BASEURL } from "../utils/baseUrl"
 
-class ResidentsController {
+class CommerceController {
 
   constructor(store) {
     this.store = store
   }
 
   async fetchList() {
-    fetch(`${BASEURL}/residents`)
+    fetch(`${BASEURL}/commerces`)
       .then((data) => data.json())
-      .then((residents) => console.log(residents))
+      .then((commerces) => console.log(commerces))
   }
 }
 
-export default ResidentsController
+export default CommerceController

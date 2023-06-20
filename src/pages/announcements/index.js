@@ -8,7 +8,7 @@ const AnnouncementsPage = () => {
       <Typography
         fontFamily={'Poppins'}
         fontWeight={400}
-        fontSize={14}>
+      >
         Comunicados
       </Typography>
     </MainPage>

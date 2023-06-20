@@ -1,6 +1,7 @@
 import React from 'react'
 import MainPage from '../main'
 import { Typography } from '@mui/material'
+import BasicTable from '../../components/BasicTable'
 
 const InvoicesPage = () => {
   return (
@@ -8,9 +9,10 @@ const InvoicesPage = () => {
       <Typography
         fontFamily={'Poppins'}
         fontWeight={400}
-        fontSize={14}>
+      >
         Faturas
       </Typography>
+      <BasicTable />
     </MainPage>
   )
 }

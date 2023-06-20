@@ -6,45 +6,51 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import EditIcon from '@mui/icons-material/Edit';
+import { IconButton } from '@mui/material';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(code, name, quantity, price) {
+  return { code, name, quantity, price };
 }
 
 const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
+  createData(83719283, 'Presunto', 6, 24),
+  createData(312312314, 'Feijão', 9, 37),
+  createData(73618271, 'Arroz', 16, 24),
+  createData(9387129, 'Milho', 3, 67, 4.3),
+  createData(37619723, 'Maçã', 16, 49, 3.9),
 ];
 
 export default function BasicTable() {
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer >
+      <Table sx={{ minWidth: 650, p: 2 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Nome</TableCell>
-            <TableCell align="right">Documento</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell sx={{ fontWeight: 600 }}>Código</TableCell>
+            <TableCell align="right" sx={{ fontWeight: 600 }}>Nome</TableCell>
+            <TableCell align="right" sx={{ fontWeight: 600 }}>Qt. em Estoque</TableCell>
+            <TableCell align="right" sx={{ fontWeight: 600 }}>Valor Unitário</TableCell>
+            <TableCell align="right" sx={{ fontWeight: 600 }}>Ações</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.code}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.code}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">{row.name}</TableCell>
+              <TableCell align="right">{row.quantity}</TableCell>
+              <TableCell align="right">{row.price}</TableCell>
+              <TableCell align="right">
+                <IconButton>
+                  <EditIcon />
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

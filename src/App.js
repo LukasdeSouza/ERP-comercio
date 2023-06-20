@@ -23,11 +23,11 @@ function App() {
         <Route path="/configuracoes" element={<SettingsPage />} />
 
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/commerce" element={<CommercePage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/employees" element={<EmployeesPage />} />
-        <Route path="/invoices" element={<InvoicesPage />} />
-        <Route path="/announcements" element={<AnnouncementsPage />} />
+        <Route path="/comercio" element={<CommercePage />} />
+        <Route path="/produtos" element={<ProductsPage />} />
+        <Route path="/funcionários" element={<EmployeesPage />} />
+        <Route path="/faturas" element={<InvoicesPage />} />
+        <Route path="/comunicado" element={<AnnouncementsPage />} />
       </Routes>
     </BrowserRouter>
   );
