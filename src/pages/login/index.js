@@ -4,24 +4,26 @@ import React, { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 import RootStoreContext from '../../rootStore';
 import LoginController from '../../controllers/LoginController';
+import { observer } from 'mobx-react-lite';
 
-const LoginPage = () => {
+const LoginPage = observer(() => {
+  const navigate = useNavigate()
   const { loginStore } = useContext(RootStoreContext)
-  const controller = new LoginController()
+  const controller = new LoginController(loginStore)
 
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
 
-  const doLogin = () => {
-    controller.fetchList(email, password)
+  const doLogin = async () => {
+    await controller.fetchList(email, password, navigate('/dashboard'))
   }
 
   return (
     <Box
       sx={{
-        width: '100vw',
-        height: '100vh',
+        width: '95vw',
+        height: '90vh',
       }}>
       <Stack
         sx={{
@@ -89,5 +91,6 @@ const LoginPage = () => {
     </Box>
   )
 }
+)
 
 export default LoginPage
