@@ -9,7 +9,7 @@ class LoginController {
     this.store = store
   }
 
-  async fetchList(email, password) {
+  async fetchList(email, password, callBack) {
     this.store.setLoading(true)
 
     await axios.post(`${BASEURL}/authentication`, {
@@ -23,6 +23,7 @@ class LoginController {
           icon: '❇️'
         })
         alert('Login efetuado com Sucesso')
+        callBack()
       })
       .catch((error) => {
         toast.error('Erro ao Fazer Login, contacte o Administrador', {
