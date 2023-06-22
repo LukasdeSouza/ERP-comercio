@@ -1,17 +1,20 @@
 import { Box, Button, Stack, TextField, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton';
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
+import RootStoreContext from '../../rootStore';
+import LoginController from '../../controllers/LoginController';
 
 const LoginPage = () => {
+  const { loginStore } = useContext(RootStoreContext)
+  const controller = new LoginController()
+
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-  const [loading, setLoading] = useState(false)
+
 
   const doLogin = () => {
-    setTimeout(() => {
-      setLoading(false)
-    }, 2000)
-    setLoading(true)
+    controller.fetchList(email, password)
   }
 
   return (
@@ -75,7 +78,7 @@ const LoginPage = () => {
           </Box>
           <LoadingButton
             variant='contained'
-            loading={loading}
+            loading={loginStore.loading}
             onClick={() => doLogin()}
             color='primary'
             sx={{ width: '100%', height: 40 }}>
