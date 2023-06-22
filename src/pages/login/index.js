@@ -1,9 +1,25 @@
 import { Box, Button, Stack, TextField, Typography } from '@mui/material'
-import React from 'react'
+import LoadingButton from '@mui/lab/LoadingButton';
+import React, { useState } from 'react'
 
 const LoginPage = () => {
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
+  const [loading, setLoading] = useState(false)
+
+  const doLogin = () => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)
+    setLoading(true)
+  }
+
   return (
-    <Box>
+    <Box
+      sx={{
+        width: '100vw',
+        height: '100vh',
+      }}>
       <Stack
         sx={{
           width: '100%',
@@ -11,22 +27,60 @@ const LoginPage = () => {
           justifyContent: "center",
           alignItems: "center"
         }}>
-        <Stack boxShadow={3} p={3} height={'30%'} width={'25%'} spacing={2}>
-          <Typography fontFamily={'Poppins'}>Login</Typography>
+        <Stack
+          boxShadow={3}
+          borderRadius={2}
+          p={3}
+          height={280}
+          width={'23%'}
+          spacing={2}>
+          <Typography
+            fontFamily={'Poppins'}
+            textAlign={'center'}
+            fontSize={20}>
+            Login
+          </Typography>
+          <Typography
+            fontFamily={'Poppins'}
+            fontWeight={300}
+            textAlign={'center'}
+            variant='caption'>
+            Faça Login com seu <b>e-mail </b>e <b>senha</b> cadastrados
+          </Typography>
           <Box>
-            <Typography fontFamily={'Poppins'} fontSize={10}>Email</Typography>
-            <TextField variant='outlined'
+            <Typography
+              fontFamily={'Poppins'}
+              fontSize={10}>
+              Email
+            </Typography>
+            <TextField
+              variant='outlined'
+              size='small'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               sx={{ width: '100%' }} />
           </Box>
           <Box>
-            <Typography fontFamily={'Poppins'} fontSize={10}>Senha</Typography>
-            <TextField variant='outlined'
+            <Typography
+              fontFamily={'Poppins'}
+              fontSize={10}>
+              Senha
+            </Typography>
+            <TextField
+              variant='outlined'
+              size='small'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               sx={{ width: '100%' }} />
           </Box>
-          <Button variant='contained' color='primary'
+          <LoadingButton
+            variant='contained'
+            loading={loading}
+            onClick={() => doLogin()}
+            color='primary'
             sx={{ width: '100%', height: 40 }}>
             Entrar
-          </Button>
+          </LoadingButton>
         </Stack>
       </Stack>
     </Box>
