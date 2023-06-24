@@ -1,6 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import RootLayout from "./components/RootLayout";
+import { BrowserRouter as Router, Route, Routes, Switch, Navigate, BrowserRouter } from "react-router-dom";
+import React from 'react';
 import './App.css'
 import ProfilePage from "./pages/profile";
 import SettingsPage from "./pages/settings";
@@ -16,13 +15,15 @@ import DashboardEditPage from "./pages/dashboard/edit";
 import ProductsEditPage from "./pages/products/edit";
 import EmployeesEditPage from "./pages/employees/edit";
 import InvoicesEditPage from "./pages/invoices/edit";
+import Page404 from "./pages/404";
 
 function App() {
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        {/* <Route path="/login" element={<LoginPage />} /> */}
+
         <Route path="/perfil" element={<ProfilePage />} />
         <Route path="/configuracoes" element={<SettingsPage />} />
 
@@ -41,7 +42,7 @@ function App() {
         <Route path="/faturas" element={<InvoicesPage />} />
         <Route path="/faturas/:id" element={<InvoicesEditPage />} />
 
-        <Route path="/comunicado" element={<AnnouncementsPage />} />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </BrowserRouter>
   );

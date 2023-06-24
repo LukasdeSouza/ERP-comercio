@@ -28,6 +28,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import { Menu, MenuItem, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import { useEffect } from 'react';
 
 const drawerWidth = 240;
 
@@ -85,6 +86,13 @@ export default function RootLayout({ children }) {
 
   const openMenu = Boolean(anchorEl);
 
+  const isAuthenticated = () => {
+    let token = localStorage.getItem('@ERP-token')
+    if (!token) {
+      navigate('/')
+    }
+  }
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -99,6 +107,15 @@ export default function RootLayout({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const onClickLogout = () => {
+    localStorage.removeItem('@ERP-token');
+    navigate('/', { replace: true })
+  }
+
+  useEffect(() => {
+    isAuthenticated()
+  }, [])
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -141,7 +158,7 @@ export default function RootLayout({ children }) {
                 Configurações
               </MenuItem>
               <MenuItem
-                onClick={() => navigate('/')}
+                onClick={onClickLogout}
                 sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
                 Sair
               </MenuItem>

@@ -64,7 +64,7 @@ const LoginPage = observer(() => {
             textAlign={'center'}
             variant='caption'
             sx={{ mt: 2 }}>
-            Faça Login com <b style={{ color: "blue" }}>e-mail </b>e <b style={{ color: "blue" }}>senha</b> cadastrados
+            Faça Login com <b style={{ color: "blue" }}>email </b>e <b style={{ color: "blue" }}>senha</b> cadastrados
           </Typography>
           <Box sx={{ mt: 2 }}>
             <Typography

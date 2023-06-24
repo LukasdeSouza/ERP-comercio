@@ -5,6 +5,7 @@ import BasicTable from '../../components/BasicTable'
 import { Typography } from '@mui/material'
 
 const MainPage = ({ children }) => {
+
   return (
     <RootLayout>
       {children}
