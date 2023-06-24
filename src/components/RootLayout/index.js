@@ -102,93 +102,91 @@ export default function RootLayout({ children }) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <Box>
-        <CssBaseline />
-        <AppBar position="fixed" open={open} elevation={1}>
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{ mr: 2, ...(open && { display: 'none' }) }}
+      <CssBaseline />
+      <AppBar position="fixed" open={open} elevation={1}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} width={'100%'}>
+            <Typography variant="h6" noWrap component="div" fontFamily={'Poppins'}>
+              ERP Comércio
+            </Typography>
+            <IconButton onClick={handleClick}>
+              <AccountCircleIcon sx={{ color: '#FFF', fontSize: '32px' }} />
+            </IconButton>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={openMenu}
+              onClose={handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
             >
-              <MenuIcon />
-            </IconButton>
-            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} width={'100%'}>
-              <Typography variant="h6" noWrap component="div" fontFamily={'Poppins'}>
-                ERP Comércio
-              </Typography>
-              <IconButton onClick={handleClick}>
-                <AccountCircleIcon sx={{ color: '#FFF', fontSize: '32px' }} />
-              </IconButton>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={openMenu}
-                onClose={handleClose}
-                MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
-              >
-                <MenuItem
-                  onClick={() => navigate('/perfil')}
-                  sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
-                  Perfil
-                </MenuItem>
-                <MenuItem
-                  onClick={() => navigate('/configuracoes')}
-                  sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
-                  Configurações
-                </MenuItem>
-                <MenuItem
-                  onClick={() => navigate('/')}
-                  sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
-                  Sair
-                </MenuItem>
-              </Menu>
-            </Stack>
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          sx={{
+              <MenuItem
+                onClick={() => navigate('/perfil')}
+                sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
+                Perfil
+              </MenuItem>
+              <MenuItem
+                onClick={() => navigate('/configuracoes')}
+                sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
+                Configurações
+              </MenuItem>
+              <MenuItem
+                onClick={() => navigate('/')}
+                sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
+                Sair
+              </MenuItem>
+            </Menu>
+          </Stack>
+        </Toolbar>
+      </AppBar>
+      <Drawer
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
             width: drawerWidth,
-            flexShrink: 0,
-            '& .MuiDrawer-paper': {
-              width: drawerWidth,
-              boxSizing: 'border-box',
-            },
-          }}
-          variant="persistent"
-          anchor="left"
-          open={open}
-        >
-          <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-            </IconButton>
-          </DrawerHeader>
-          <List>
-            {['Dashboard', 'Produtos', 'Funcionários', 'Faturas', 'Comunicado'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton onClick={() => navigate(`/${text}`)}>
-                  <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                  </ListItemIcon>
-                  <Typography fontFamily={'Poppins'} fontSize={14} fontWeight={400}>
-                    {text}
-                  </Typography>
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-        <Main open={open}>
-          <DrawerHeader />
-          {children}
-        </Main>
-        <Toaster position='top-center' />
-      </Box>
+            boxSizing: 'border-box',
+          },
+        }}
+        variant="persistent"
+        anchor="left"
+        open={open}
+      >
+        <DrawerHeader>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          </IconButton>
+        </DrawerHeader>
+        <List>
+          {['Dashboard', 'Produtos', 'Funcionários', 'Faturas', 'Comunicado'].map((text, index) => (
+            <ListItem key={text} disablePadding>
+              <ListItemButton onClick={() => navigate(`/${text}`)}>
+                <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon>
+                <Typography fontFamily={'Poppins'} fontSize={14} fontWeight={400}>
+                  {text}
+                </Typography>
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+      <Main open={open}>
+        <DrawerHeader />
+        {children}
+      </Main>
+      <Toaster position='top-center' />
     </Box>
   );
 }
