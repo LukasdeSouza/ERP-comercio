@@ -11,6 +11,8 @@ import DashboardPage from "./pages/dashboard";
 import ProductsPage from "./pages/products";
 import EmployeesPage from "./pages/employees";
 import LoginPage from "./pages/login";
+import CommmerceEditPage from "./pages/commerce/edit";
+import DashboardEditPage from "./pages/dashboard/edit";
 
 function App() {
   return (
@@ -22,7 +24,11 @@ function App() {
         <Route path="/configuracoes" element={<SettingsPage />} />
 
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard/:id" element={<DashboardEditPage />} />
+
         <Route path="/comercio" element={<CommercePage />} />
+        <Route path="/comercio/:id" element={<CommmerceEditPage />} />
+
         <Route path="/produtos" element={<ProductsPage />} />
         <Route path="/funcionários" element={<EmployeesPage />} />
         <Route path="/faturas" element={<InvoicesPage />} />

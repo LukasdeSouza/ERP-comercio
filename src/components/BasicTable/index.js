@@ -21,7 +21,7 @@ const rows = [
   createData(37619723, 'Maçã', 16, 49, 3.9),
 ];
 
-export default function BasicTable() {
+export default function BasicTable({ onClickEdit }) {
   return (
     <TableContainer >
       <Table sx={{ minWidth: 650, p: 2 }} aria-label="simple table">
@@ -47,7 +47,7 @@ export default function BasicTable() {
               <TableCell align="right">{row.quantity}</TableCell>
               <TableCell align="right">{row.price}</TableCell>
               <TableCell align="right">
-                <IconButton onClick={(e) => console.log(e)}>
+                <IconButton onClick={() => onClickEdit(row)}>
                   <EditIcon />
                 </IconButton>
               </TableCell>
