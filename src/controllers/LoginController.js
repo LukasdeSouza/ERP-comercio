@@ -17,21 +17,23 @@ class LoginController {
       password: password
     })
       .then((data) => {
-        toast.success('Login Efetuado com Sucesso', {
-          duration: 2000,
-          position: 'top-center',
-          icon: '❇️'
-        })
-        alert('Login efetuado com Sucesso')
-        callBack()
+        if (data.data.msg === 'Senha Incorreta!') {
+          toast.error('Usuário ou Senha Incorretos', {
+            duration: 3000,
+            position: 'top-center',
+            icon: '⚠️'
+          })
+        } else {
+          localStorage.setItem('@ERP-token', data.data.token)
+          callBack()
+        }
       })
       .catch((error) => {
-        toast.error('Erro ao Fazer Login, contacte o Administrador', {
+        toast.error('Usuário ou Senha Incorretos', {
           duration: 3000,
           position: 'top-center',
           icon: '⚠️'
         })
-        alert('Erro ao efetuar Login')
       })
       .finally(() => this.store.setLoading(false))
   }
