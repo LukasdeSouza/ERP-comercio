@@ -13,6 +13,8 @@ import EmployeesPage from "./pages/employees";
 import LoginPage from "./pages/login";
 import CommmerceEditPage from "./pages/commerce/edit";
 import DashboardEditPage from "./pages/dashboard/edit";
+import ProductsEditPage from "./pages/products/edit";
+import EmployeesEditPage from "./pages/employees/edit";
 
 function App() {
   return (
@@ -30,8 +32,14 @@ function App() {
         <Route path="/comercio/:id" element={<CommmerceEditPage />} />
 
         <Route path="/produtos" element={<ProductsPage />} />
+        <Route path="/produtos/:id" element={<ProductsEditPage />} />
+
         <Route path="/funcionários" element={<EmployeesPage />} />
+        <Route path="/funcionários/:id" element={<EmployeesEditPage />} />
+
         <Route path="/faturas" element={<InvoicesPage />} />
+        <Route path="/faturas/:id" element={<InvoicesPage />} />
+
         <Route path="/comunicado" element={<AnnouncementsPage />} />
       </Routes>
     </BrowserRouter>
