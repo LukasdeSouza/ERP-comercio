@@ -15,6 +15,7 @@ import CommmerceEditPage from "./pages/commerce/edit";
 import DashboardEditPage from "./pages/dashboard/edit";
 import ProductsEditPage from "./pages/products/edit";
 import EmployeesEditPage from "./pages/employees/edit";
+import InvoicesEditPage from "./pages/invoices/edit";
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
         <Route path="/funcionários/:id" element={<EmployeesEditPage />} />
 
         <Route path="/faturas" element={<InvoicesPage />} />
-        <Route path="/faturas/:id" element={<InvoicesPage />} />
+        <Route path="/faturas/:id" element={<InvoicesEditPage />} />
 
         <Route path="/comunicado" element={<AnnouncementsPage />} />
       </Routes>
