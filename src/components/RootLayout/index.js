@@ -185,7 +185,7 @@ export default function RootLayout({ children }) {
           </IconButton>
         </DrawerHeader>
         <List>
-          {['Dashboard', 'Produtos', 'Funcionários', 'Faturas'].map((text, index) => (
+          {['Financeiro', 'Produtos', 'Funcionários', 'Faturas'].map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton onClick={() => navigate(`/${text}`)}>
                 <ListItemIcon>

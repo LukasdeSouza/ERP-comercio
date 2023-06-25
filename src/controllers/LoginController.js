@@ -20,8 +20,11 @@ class LoginController {
         if (data.data.msg === 'Senha Incorreta!') {
           toast.error('Usuário ou Senha Incorretos', {
             duration: 3000,
-            position: 'top-center',
-            icon: '⚠️'
+            style: {
+              borderRadius: '8px',
+              fontSize: 14,
+              fontWeight: 400
+            }
           })
         } else {
           localStorage.setItem('@ERP-token', data.data.token)
@@ -31,8 +34,11 @@ class LoginController {
       .catch((error) => {
         toast.error('Usuário ou Senha Incorretos', {
           duration: 3000,
-          position: 'top-center',
-          icon: '⚠️'
+          style: {
+            borderRadius: '8px',
+            fontSize: 14,
+            fontWeight: 400
+          }
         })
       })
       .finally(() => this.store.setLoading(false))

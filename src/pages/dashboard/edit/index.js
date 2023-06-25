@@ -3,14 +3,14 @@ import MainPage from '../../main'
 import { useNavigate, useParams } from 'react-router-dom'
 import MainEditTitle from '../../../components/MainEditTitle'
 
-const DashboardEditPage = () => {
+const FinancialEditPage = () => {
   const id = useParams()
 
   return (
     <MainPage>
-      <MainEditTitle route={'dashboard'} title={'Dashboard'} />
+      <MainEditTitle route={'financeiro'} title={'Financeiro'} />
     </MainPage>
   )
 }
 
-export default DashboardEditPage
+export default FinancialEditPage

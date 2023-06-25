@@ -4,18 +4,18 @@ import { Typography } from '@mui/material'
 import BasicTable from '../../components/BasicTable'
 import { useNavigate } from 'react-router-dom'
 
-const DashboardPage = () => {
+const FinancialPage = () => {
   const navigate = useNavigate()
   const onClickEdit = (row) => {
-    navigate(`/dashboard/${row.code}`, { replace: true })
+    navigate(`/financeiro/${row.code}`, { replace: true })
   }
 
   return (
     <MainPage>
-      <Typography fontFamily={'Poppins'}>Dashboard</Typography>
+      <Typography fontFamily={'Poppins'}>Financeiro</Typography>
       <BasicTable onClickEdit={onClickEdit} />
     </MainPage>
   )
 }
 
-export default DashboardPage
+export default FinancialPage

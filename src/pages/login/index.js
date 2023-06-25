@@ -7,6 +7,7 @@ import LoginController from '../../controllers/LoginController';
 import { observer } from 'mobx-react-lite';
 import { Toaster } from 'react-hot-toast';
 import { RemoveRedEye, Visibility, VisibilityOff } from '@mui/icons-material';
+import LSSoftwareLogo from '../../assets/LS SOFTWARE SERVICES LOGO SVG.svg'
 
 const LoginPage = observer(() => {
   const navigate = useNavigate()
@@ -25,7 +26,7 @@ const LoginPage = observer(() => {
   };
 
   const navigateTo = () => {
-    navigate('/dashboard')
+    navigate('/financeiro')
   }
   const doLogin = async () => {
     await controller.fetchList(email, password, navigateTo)
@@ -35,13 +36,13 @@ const LoginPage = observer(() => {
     <Box
       component={'form'}
       sx={{
-        width: '95vw',
-        height: '90vh',
+        width: '100%',
+        height: '100%',
       }}>
       <Stack
         sx={{
-          width: '100%',
-          height: '100%',
+          width: 'inherit',
+          height: 'inherit',
           justifyContent: "center",
           alignItems: "center"
         }}>
@@ -114,6 +115,13 @@ const LoginPage = observer(() => {
             Entrar
           </LoadingButton>
         </Stack>
+        <Typography
+          fontFamily={'Poppins'}
+          fontSize={10}
+          fontWeight={300}
+          mt={2}>
+          Todos os direitos reservados a LS Software Services
+        </Typography>
       </Stack>
       <Toaster />
     </Box>

@@ -6,16 +6,18 @@ import SettingsPage from "./pages/settings";
 import InvoicesPage from "./pages/invoices";
 import AnnouncementsPage from "./pages/announcements";
 import CommercePage from "./pages/commerce";
-import DashboardPage from "./pages/dashboard";
+import FinancialPage from "./pages/dashboard";
+
 import ProductsPage from "./pages/products";
 import EmployeesPage from "./pages/employees";
 import LoginPage from "./pages/login";
 import CommmerceEditPage from "./pages/commerce/edit";
-import DashboardEditPage from "./pages/dashboard/edit";
+import FinancialEditPage from "./pages/dashboard/edit";
 import ProductsEditPage from "./pages/products/edit";
 import EmployeesEditPage from "./pages/employees/edit";
 import InvoicesEditPage from "./pages/invoices/edit";
 import Page404 from "./pages/404";
+
 
 function App() {
 
@@ -27,8 +29,8 @@ function App() {
         <Route path="/perfil" element={<ProfilePage />} />
         <Route path="/configuracoes" element={<SettingsPage />} />
 
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/dashboard/:id" element={<DashboardEditPage />} />
+        <Route path="/financeiro" element={<FinancialPage />} />
+        <Route path="/financeiro/:id" element={<FinancialEditPage />} />
 
         <Route path="/comercio" element={<CommercePage />} />
         <Route path="/comercio/:id" element={<CommmerceEditPage />} />
