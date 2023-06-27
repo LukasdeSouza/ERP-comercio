@@ -13,7 +13,9 @@ const ProductsPage = () => {
 
   return (
     <MainPage>
-      <Typography fontFamily={'Poppins'} mb={2}>Produtos Cadastrados</Typography>
+      <Typography fontFamily={'Poppins'} fontSize={18} mb={2}>
+        Lista de Produtos
+      </Typography>
       <BasicTable onClickEdit={onClickEdit} />
     </MainPage>
   )

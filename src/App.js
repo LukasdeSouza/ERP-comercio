@@ -32,6 +32,9 @@ function App() {
         <Route path="/financeiro" element={<FinancialPage />} />
         <Route path="/financeiro/:id" element={<FinancialEditPage />} />
 
+        <Route path="/splash" element={<FinancialEditPage />} />
+
+
         <Route path="/comercio" element={<CommercePage />} />
         <Route path="/comercio/:id" element={<CommmerceEditPage />} />
 

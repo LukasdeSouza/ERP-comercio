@@ -20,9 +20,10 @@ import ListItemText from '@mui/material/ListItemText';
 
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import EngineeringIcon from '@mui/icons-material/Engineering';
 import DescriptionIcon from '@mui/icons-material/Description';
-import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
-import VillaIcon from '@mui/icons-material/Villa';
 import PersonIcon from '@mui/icons-material/Person';
 
 import { Menu, MenuItem, Stack } from '@mui/material';
@@ -78,6 +79,25 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   justifyContent: 'flex-end',
 }));
 
+const menuItems = [
+  {
+    label: 'Financeiro',
+    icon: <AccountBalanceWalletIcon />
+  },
+  {
+    label: 'Produtos',
+    icon: <InventoryIcon />
+  },
+  {
+    label: 'Funcionários',
+    icon: <EngineeringIcon />
+  },
+  {
+    label: 'Faturas',
+    icon: <DescriptionIcon />
+  }
+]
+
 export default function RootLayout({ children }) {
   const navigate = useNavigate()
   const theme = useTheme();
@@ -120,8 +140,8 @@ export default function RootLayout({ children }) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} elevation={1}>
-        <Toolbar>
+      <AppBar position="fixed" open={open} elevation={0}>
+        <Toolbar >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -131,12 +151,16 @@ export default function RootLayout({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} width={'100%'}>
+          <Stack
+            direction={'row'}
+            justifyContent={'space-between'}
+            alignItems={'center'}
+            width={'100%'}>
             <Typography variant="h6" noWrap component="div" fontFamily={'Poppins'}>
               ERP Comércio
             </Typography>
             <IconButton onClick={handleClick}>
-              <AccountCircleIcon sx={{ color: '#FFF', fontSize: '32px' }} />
+              <AccountCircleIcon sx={{ color: '#fff', fontSize: '32px' }} />
             </IconButton>
             <Menu
               id="basic-menu"
@@ -185,14 +209,14 @@ export default function RootLayout({ children }) {
           </IconButton>
         </DrawerHeader>
         <List>
-          {['Financeiro', 'Produtos', 'Funcionários', 'Faturas'].map((text, index) => (
+          {menuItems.map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton onClick={() => navigate(`/${text}`)}>
+              <ListItemButton onClick={() => navigate(`/${text.label}`)}>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {text.icon}
                 </ListItemIcon>
                 <Typography fontFamily={'Poppins'} fontSize={14} fontWeight={400}>
-                  {text}
+                  {text.label}
                 </Typography>
               </ListItemButton>
             </ListItem>
