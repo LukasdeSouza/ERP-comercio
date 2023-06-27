@@ -23,38 +23,36 @@ const rows = [
 
 export default function BasicTable({ onClickEdit }) {
   return (
-    <TableContainer >
-      <Table sx={{ minWidth: 650, p: 2 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell sx={{ fontWeight: 600 }}>Código</TableCell>
-            <TableCell align="right" sx={{ fontWeight: 600 }}>Nome</TableCell>
-            <TableCell align="right" sx={{ fontWeight: 600 }}>Qt. em Estoque</TableCell>
-            <TableCell align="right" sx={{ fontWeight: 600 }}>Valor Unitário</TableCell>
-            <TableCell align="right" sx={{ fontWeight: 600 }}>Ações</TableCell>
+    <Table sx={{ minWidth: '100%', p: 2 }} aria-label="simple table">
+      <TableHead>
+        <TableRow>
+          <TableCell sx={{ fontWeight: 600 }}>Código</TableCell>
+          <TableCell align="right" sx={{ fontWeight: 600 }}>Nome</TableCell>
+          <TableCell align="right" sx={{ fontWeight: 600 }}>Qt. em Estoque</TableCell>
+          <TableCell align="right" sx={{ fontWeight: 600 }}>Valor Unitário</TableCell>
+          <TableCell align="right" sx={{ fontWeight: 600 }}>Ações</TableCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {rows.map((row) => (
+          <TableRow
+            key={row.code}
+            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+          >
+            <TableCell component="th" scope="row">
+              {row.code}
+            </TableCell>
+            <TableCell align="right">{row.name}</TableCell>
+            <TableCell align="right">{row.quantity}</TableCell>
+            <TableCell align="right">{row.price}</TableCell>
+            <TableCell align="right">
+              <IconButton onClick={() => onClickEdit(row)}>
+                <EditIcon />
+              </IconButton>
+            </TableCell>
           </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.code}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.code}
-              </TableCell>
-              <TableCell align="right">{row.name}</TableCell>
-              <TableCell align="right">{row.quantity}</TableCell>
-              <TableCell align="right">{row.price}</TableCell>
-              <TableCell align="right">
-                <IconButton onClick={() => onClickEdit(row)}>
-                  <EditIcon />
-                </IconButton>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        ))}
+      </TableBody>
+    </Table>
   );
 }
