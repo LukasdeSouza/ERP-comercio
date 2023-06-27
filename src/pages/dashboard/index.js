@@ -8,6 +8,14 @@ import { Add } from '@mui/icons-material'
 
 const FinancialPage = () => {
   const navigate = useNavigate()
+
+  const tableHead = ['Produtos', 'Quantidade', 'Valor Unitário', 'Valor Total', 'Ações']
+  const tableRow = [
+    { product: 'Pão', quantity: 4, unityValue: 'R$1,55', value: 'R$6.93' },
+    { product: 'Manteiga', quantity: 2, unityValue: 'R$8,90', value: 'R$16.93' },
+    { product: 'Carne', quantity: 2, unityValue: 'R$28,48', value: 'R$56.93' }
+  ]
+
   const onClickEdit = (row) => {
     navigate(`/financeiro/${row.code}`, { replace: true })
   }
@@ -40,7 +48,10 @@ const FinancialPage = () => {
             fontSize={18}>
             Lista de Entradas
           </Typography>
-          <BasicTable onClickEdit={onClickEdit} />
+          <BasicTable
+            tableHead={tableHead}
+            tableRow={tableRow}
+            onClickEdit={onClickEdit} />
         </Stack>
       </Stack>
     </MainPage>

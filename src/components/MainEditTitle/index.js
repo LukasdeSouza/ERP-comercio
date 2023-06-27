@@ -7,8 +7,6 @@ const MainEditTitle = ({ route, title }) => {
   const navigate = useNavigate()
   const params = useParams()
 
-  console.log(params.id)
-
   return (
     <Stack direction={'row'} alignItems={'center'} spacing={2}>
       <IconButton onClick={() => navigate(`/${route}`)}>
