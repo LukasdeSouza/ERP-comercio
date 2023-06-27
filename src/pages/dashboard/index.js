@@ -13,10 +13,16 @@ const FinancialPage = () => {
 
   return (
     <MainPage>
-      <Typography fontFamily={'Poppins'} fontSize={18} mb={2}>Informações Financeiras</Typography>
-      <Typography fontFamily={'Poppins'} fontSize={14} mb={2}>Entradas e Saídas de Valores</Typography>
-      {/* <BasicTable onClickEdit={onClickEdit} /> */}
+      <Typography
+        fontFamily={'Poppins'}
+        fontSize={18}
+        mb={2}>Informações Financeiras</Typography>
+      <Typography
+        fontFamily={'Poppins'}
+        fontSize={14}
+        mb={2}>Entradas e Saídas de Valores</Typography>
       <BarChart />
+      {/* <BasicTable onClickEdit={onClickEdit} /> */}
     </MainPage>
   )
 }
