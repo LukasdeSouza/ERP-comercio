@@ -12,7 +12,7 @@ const FinancialPage = () => {
 
   return (
     <MainPage>
-      <Typography fontFamily={'Poppins'}>Financeiro</Typography>
+      <Typography fontFamily={'Poppins'} fontSize={18} mb={2}>Lista de Informações Financeiras</Typography>
       <BasicTable onClickEdit={onClickEdit} />
     </MainPage>
   )

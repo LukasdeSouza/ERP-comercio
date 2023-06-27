@@ -15,8 +15,10 @@ const InvoicesPage = () => {
     <MainPage>
       <Typography
         fontFamily={'Poppins'}
-        fontWeight={400}>
-        Faturas
+        fontSize={18}
+        fontWeight={400}
+        mb={2}>
+        Lista de Faturas
       </Typography>
       <BasicTable onClickEdit={onClickEdit} />
     </MainPage>

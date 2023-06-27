@@ -13,7 +13,7 @@ const EmployeesPage = () => {
 
   return (
     <MainPage>
-      <Typography fontFamily={'Poppins'} mb={2}>Funcionários</Typography>
+      <Typography fontFamily={'Poppins'} fontSize={18} mb={2}>Lista de Funcionários</Typography>
       <BasicTable onClickEdit={onClickEdit} />
     </MainPage>
   )
