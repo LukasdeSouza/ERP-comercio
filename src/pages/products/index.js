@@ -3,7 +3,8 @@ import MainPage from '../main'
 import { Typography } from '@mui/material'
 import BasicTable from '../../components/BasicTable'
 import { useNavigate } from 'react-router-dom'
-import TableRowProducts from './tableRow'
+import TableRowProducts from './table/tableRow'
+import TableHeadProducts from './table/tableHead'
 
 const ProductsPage = () => {
   const navigate = useNavigate()
@@ -18,23 +19,19 @@ const ProductsPage = () => {
     navigate(`/produtos/${row.code}`)
   }
 
-  const tableRowComponent = () => {
-    return (
-      <TableRowProducts onClickEdit={() => onClickEdit(tableRow)} row={tableRow} />
-    )
-  }
-
 
   return (
     <MainPage>
       <Typography fontFamily={'Poppins'} fontSize={18} mb={2}>
         Lista de Produtos
       </Typography>
-      <BasicTable
-        tableHead={tableHead}
-        tableRow={tableRow}
-        tableRowComponent={tableRowComponent}
-        onClickEdit={onClickEdit} />
+      <BasicTable tableHead={<TableHeadProducts />}
+        tableRowComponent={
+          <TableRowProducts
+            rows={tableRow}
+            onClickEdit={() => onClickEdit(tableRow)} />
+        }
+      />
     </MainPage>
   )
 }

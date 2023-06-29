@@ -26,7 +26,8 @@ const FinancialPage = () => {
         <Stack direction={'row'} justifyContent={'space-between'} mb={2}>
           <Typography
             fontFamily={'Poppins'}
-            fontSize={18}>
+            fontSize={18}
+            color={"#1976d2"}>
             Informações Financeiras
           </Typography>
           <Button

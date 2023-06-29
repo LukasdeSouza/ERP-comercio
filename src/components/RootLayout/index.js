@@ -141,7 +141,7 @@ export default function RootLayout({ children }) {
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" open={open} elevation={0}>
-        <Toolbar >
+        <Toolbar sx={{ background: '#fff' }} >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -149,18 +149,24 @@ export default function RootLayout({ children }) {
             edge="start"
             sx={{ mr: 2, ...(open && { display: 'none' }) }}
           >
-            <MenuIcon />
+            <MenuIcon color='primary' />
           </IconButton>
           <Stack
             direction={'row'}
             justifyContent={'space-between'}
             alignItems={'center'}
             width={'100%'}>
-            <Typography variant="h6" noWrap component="div" fontFamily={'Poppins'}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              fontFamily={'Poppins'}
+              color={"#1976d2"}>
               ERP Comércio
             </Typography>
             <IconButton onClick={handleClick}>
-              <AccountCircleIcon sx={{ color: '#fff', fontSize: '32px' }} />
+              <AccountCircleIcon
+                sx={{ color: '#1976d2', fontSize: '32px' }} />
             </IconButton>
             <Menu
               id="basic-menu"
@@ -195,6 +201,7 @@ export default function RootLayout({ children }) {
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
+            background: "#1976d2",
             width: drawerWidth,
             boxSizing: 'border-box',
           },
@@ -205,17 +212,21 @@ export default function RootLayout({ children }) {
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            {theme.direction === 'ltr' ? <ChevronLeftIcon color='#fff' /> : <ChevronRightIcon color='#fff' />}
           </IconButton>
         </DrawerHeader>
         <List>
           {menuItems.map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton onClick={() => navigate(`/${text.label}`)}>
-                <ListItemIcon>
+                <ListItemIcon sx={{ color: "#fff" }}>
                   {text.icon}
                 </ListItemIcon>
-                <Typography fontFamily={'Poppins'} fontSize={14} fontWeight={400}>
+                <Typography
+                  fontFamily={'Poppins'}
+                  fontSize={14}
+                  fontWeight={400}
+                  color={'#eee'}>
                   {text.label}
                 </Typography>
               </ListItemButton>
