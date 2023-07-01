@@ -1,7 +1,7 @@
 import React from 'react'
 import MainPage from '../main'
-import { Button, Divider, Stack, Typography } from '@mui/material'
-import BasicTable from '../../components/BasicTable'
+import { Button, Divider, IconButton, Link, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom'
 import BarChart from '../../components/Charts/barChart'
 import { Add } from '@mui/icons-material'
@@ -9,11 +9,11 @@ import { Add } from '@mui/icons-material'
 const FinancialPage = () => {
   const navigate = useNavigate()
 
-  const tableHead = ['Produtos', 'Quantidade', 'Valor Unitário', 'Valor Total', 'Ações']
+  const tableHead = ['Código', 'Valor', 'Tipo', 'Favorecido', 'Ações']
   const tableRow = [
-    { product: 'Pão', quantity: 4, unityValue: 'R$1,55', value: 'R$6.93' },
-    { product: 'Manteiga', quantity: 2, unityValue: 'R$8,90', value: 'R$16.93' },
-    { product: 'Carne', quantity: 2, unityValue: 'R$28,48', value: 'R$56.93' }
+    { code: '4231241', value: '12.000', type: 'Entrada', toWho: 'Fernandez da Cunha Adv' },
+    { code: '312314', value: '5.000', type: 'Entrada', toWho: 'Paralelepidedo Costa' },
+    { code: '093182', value: '1.200', type: 'Saída', toWho: 'Nárnia Festas' }
   ]
 
   const onClickEdit = (row) => {
@@ -49,10 +49,40 @@ const FinancialPage = () => {
             fontSize={18}>
             Lista de Entradas
           </Typography>
-          <BasicTable
-            tableHead={tableHead}
-            tableRow={tableRow}
-            onClickEdit={onClickEdit} />
+          <Table sx={{ minWidth: '100%', p: 2 }} aria-label="simple table">
+            <TableHead>
+              <TableRow>
+                {tableHead.map((head) => (
+                  <TableCell sx={{ fontWeight: 600 }}>{head}</TableCell>
+                ))}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {tableRow.map((row) => (
+                <TableRow>
+                  <TableCell>
+                    {row.code}
+                  </TableCell>
+                  <TableCell>
+                    <Link href={`/financeiro/${row.code}`}>
+                      R${row.value}
+                    </Link>
+                  </TableCell>
+                  <TableCell>
+                    {row.toWho}
+                  </TableCell>
+                  <TableCell>
+                    {row.type}
+                  </TableCell>
+                  <TableCell>
+                    <IconButton onClick={() => onClickEdit(row)}>
+                      <MoreVertIcon color={'primary'} />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </Stack>
       </Stack>
     </MainPage>

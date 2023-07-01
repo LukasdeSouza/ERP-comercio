@@ -16,7 +16,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
@@ -89,11 +89,15 @@ const menuItems = [
     icon: <InventoryIcon />
   },
   {
+    label: 'Despesas',
+    icon: <LocalAtmIcon />
+  },
+  {
     label: 'Funcionários',
     icon: <EngineeringIcon />
   },
   {
-    label: 'Faturas',
+    label: 'Contratos',
     icon: <DescriptionIcon />
   }
 ]

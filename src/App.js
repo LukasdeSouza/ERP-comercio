@@ -17,6 +17,10 @@ import ProductsEditPage from "./pages/products/edit";
 import EmployeesEditPage from "./pages/employees/edit";
 import InvoicesEditPage from "./pages/invoices/edit";
 import Page404 from "./pages/404";
+import ExpensesPage from "./pages/expenses";
+import ExpensesEditPage from "./pages/expenses/edit";
+import ContractsPage from "./pages/invoices";
+import ContractsEditPage from "./pages/invoices/edit";
 
 
 function App() {
@@ -32,8 +36,10 @@ function App() {
         <Route path="/financeiro" element={<FinancialPage />} />
         <Route path="/financeiro/:id" element={<FinancialEditPage />} />
 
-        <Route path="/splash" element={<FinancialEditPage />} />
+        <Route path="/despesas" element={<ExpensesPage />} />
+        <Route path="/despesas/:id" element={<ExpensesEditPage />} />
 
+        <Route path="/splash" element={<FinancialEditPage />} />
 
         <Route path="/comercio" element={<CommercePage />} />
         <Route path="/comercio/:id" element={<CommmerceEditPage />} />
@@ -44,8 +50,8 @@ function App() {
         <Route path="/funcionários" element={<EmployeesPage />} />
         <Route path="/funcionários/:id" element={<EmployeesEditPage />} />
 
-        <Route path="/faturas" element={<InvoicesPage />} />
-        <Route path="/faturas/:id" element={<InvoicesEditPage />} />
+        <Route path="/contratos" element={<ContractsPage />} />
+        <Route path="/contratos/:id" element={<ContractsEditPage />} />
 
         <Route path="*" element={<Page404 />} />
       </Routes>

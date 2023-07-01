@@ -2,12 +2,12 @@ import React from 'react'
 import MainPage from '../../main'
 import MainEditTitle from '../../../components/MainEditTitle'
 
-const ContractsEditPage = () => {
+const ExpensesEditPage = () => {
   return (
     <MainPage>
-      <MainEditTitle route={'contratos'} title={'Contratos'} />
+      <MainEditTitle route={'despesas'} title={'Despesas'} />
     </MainPage>
   )
 }
 
-export default ContractsEditPage
+export default ExpensesEditPage

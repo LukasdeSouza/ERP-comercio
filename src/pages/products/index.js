@@ -1,10 +1,8 @@
 import React from 'react'
 import MainPage from '../main'
-import { Typography } from '@mui/material'
-import BasicTable from '../../components/BasicTable'
+import { IconButton, Link, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
-import TableRowProducts from './table/tableRow'
-import TableHeadProducts from './table/tableHead'
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const ProductsPage = () => {
   const navigate = useNavigate()
@@ -25,13 +23,43 @@ const ProductsPage = () => {
       <Typography fontFamily={'Poppins'} fontSize={18} mb={2}>
         Lista de Produtos
       </Typography>
-      <BasicTable tableHead={<TableHeadProducts />}
-        tableRowComponent={
-          <TableRowProducts
-            rows={tableRow}
-            onClickEdit={() => onClickEdit(tableRow)} />
-        }
-      />
+      <Table sx={{ minWidth: '100%', p: 2 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            {tableHead.map((head) => (
+              <TableCell sx={{ fontWeight: 600 }}>{head}</TableCell>
+            ))}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {tableRow.map((row) => (
+            <TableRow>
+              <TableCell>
+                {row.code}
+              </TableCell>
+              <TableCell>
+                <Link href={`/produtos/${row.code}`}>
+                  {row.product}
+                </Link>
+              </TableCell>
+              <TableCell>
+                {row.quantity}
+              </TableCell>
+              <TableCell>
+                {row.unityValue}
+              </TableCell>
+              <TableCell>
+                {row.value}
+              </TableCell>
+              <TableCell>
+                <IconButton onClick={onClickEdit}>
+                  <MoreVertIcon color={'primary'} />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </MainPage>
   )
 }

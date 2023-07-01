@@ -2,29 +2,27 @@ import React from 'react'
 import MainPage from '../main'
 import { IconButton, Link, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
-const EmployeesPage = () => {
+const ExpensesPage = () => {
   const navigate = useNavigate()
-
-  const tableHead = ['Código', 'Nome', 'Função', 'Setor', 'Ações']
+  const tableHead = ['Código', 'Valor', 'Dt. de Cobrança', 'Destinatário', 'Ações']
   const tableRow = [
-    { code: '0001', fullName: 'Fernandinho da Costa', function: 'Programador', sector: 'T.I' },
-    { code: '0002', fullName: 'Severino Barbosa', function: 'Designer', sector: 'T.I' },
-    { code: '0003', fullName: 'Almondeguita da Silva', function: 'Faxineiro', sector: 'Limpeza' },
-    { code: '0004', fullName: 'Narnino Borges', function: 'Financeiro', sector: 'Administrativo' },
-    { code: '0005', fullName: 'Pabla Vittar', function: 'Cozinheiro', sector: 'Cozinha' },
-    { code: '0006', fullName: 'Noguinsen Sapinoseb', function: 'Designer', sector: 'T.I' },
-    { code: '0007', fullName: 'Silvinha Motorista', function: 'Motorista', sector: 'Administrativo' }
+    { code: '42343', value: '1.300', date: '22/07/23', toWho: 'Mastro Postes' },
+    { code: '12314', value: '700', date: '22/07/23', toWho: 'Auto Ligas' },
+    { code: '52342', value: '75', date: '22/07/23', toWho: 'InterWebs Conexões' }
   ]
 
   const onClickEdit = (row) => {
-    navigate(`/funcionários/${row.code}`, { replace: true })
+    navigate(`/despesas/${row.code}`)
   }
+
 
   return (
     <MainPage>
-      <Typography fontFamily={'Poppins'} fontSize={18} mb={2}>Lista de Funcionários</Typography>
+      <Typography fontFamily={'Poppins'} fontSize={18} mb={2}>
+        Lista de Despesas
+      </Typography>
       <Table sx={{ minWidth: '100%', p: 2 }} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -40,15 +38,15 @@ const EmployeesPage = () => {
                 {row.code}
               </TableCell>
               <TableCell>
-                <Link href={`/funcionários/${row.code}`}>
-                  {row.fullName}
+                <Link href={`/despesas/${row.code}`}>
+                  R${row.value}
                 </Link>
               </TableCell>
               <TableCell>
-                {row.function}
+                {row.date}
               </TableCell>
               <TableCell>
-                {row.sector}
+                {row.toWho}
               </TableCell>
               <TableCell>
                 <IconButton onClick={() => onClickEdit(row)}>
@@ -63,4 +61,4 @@ const EmployeesPage = () => {
   )
 }
 
-export default EmployeesPage
+export default ExpensesPage
