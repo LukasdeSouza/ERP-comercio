@@ -1,8 +1,9 @@
 import React from 'react'
 import MainPage from '../main'
-import { IconButton, Link, Menu, MenuItem, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, IconButton, Link, Menu, MenuItem, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom'
+import { Add } from '@mui/icons-material';
 
 const ContractsPage = () => {
   const navigate = useNavigate()
@@ -34,13 +35,20 @@ const ContractsPage = () => {
 
   return (
     <MainPage>
-      <Typography
-        fontFamily={'Poppins'}
-        fontSize={18}
-        fontWeight={400}
-        mb={2}>
-        Lista de Contratos
-      </Typography>
+      <Stack direction={'row'} justifyContent={'space-between'} mb={2}>
+        <Typography
+          fontFamily={'Poppins'}
+          fontSize={18}
+          color={"#1976d2"}>
+          Lista de Contratos
+        </Typography>
+        <Button
+          variant='contained'
+          onClick={() => navigate('novo')}
+          startIcon={<Add />}>
+          Nova Entrada
+        </Button>
+      </Stack>
       <Table sx={{ minWidth: '100%', p: 2 }} aria-label="simple table">
         <TableHead>
           <TableRow>

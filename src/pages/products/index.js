@@ -1,8 +1,9 @@
 import React from 'react'
 import MainPage from '../main'
-import { IconButton, Link, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, IconButton, Link, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { Add } from '@mui/icons-material';
 
 const ProductsPage = () => {
   const navigate = useNavigate()
@@ -20,9 +21,20 @@ const ProductsPage = () => {
 
   return (
     <MainPage>
-      <Typography fontFamily={'Poppins'} fontSize={18} mb={2}>
-        Lista de Produtos
-      </Typography>
+      <Stack direction={'row'} justifyContent={'space-between'} mb={2}>
+        <Typography
+          fontFamily={'Poppins'}
+          fontSize={18}
+          color={"#1976d2"}>
+          Lista de Produtos
+        </Typography>
+        <Button
+          variant='contained'
+          onClick={() => navigate('novo')}
+          startIcon={<Add />}>
+          Novo Produto
+        </Button>
+      </Stack>
       <Table sx={{ minWidth: '100%', p: 2 }} aria-label="simple table">
         <TableHead>
           <TableRow>
