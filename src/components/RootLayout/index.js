@@ -166,7 +166,7 @@ export default function RootLayout({ children }) {
               component="div"
               fontFamily={'Poppins'}
               color={"#1976d2"}>
-              ERP Comércio
+              ERP Serviços
             </Typography>
             <IconButton onClick={handleClick}>
               <AccountCircleIcon
@@ -205,7 +205,7 @@ export default function RootLayout({ children }) {
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            background: "#1976d2",
+            background: "#084f95",
             width: drawerWidth,
             boxSizing: 'border-box',
           },
