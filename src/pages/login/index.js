@@ -120,7 +120,7 @@ const LoginPage = observer(() => {
           fontSize={10}
           fontWeight={300}
           mt={2}>
-          Todos os direitos reservados a LS Software Services
+          Todos os direitos reservados a <b>LS Software Services</b>
         </Typography>
       </Stack>
       <Toaster />
