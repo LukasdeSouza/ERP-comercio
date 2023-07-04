@@ -31,6 +31,7 @@ import { Menu, MenuItem, Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
+import { useState } from 'react';
 
 const drawerWidth = 240;
 
@@ -107,11 +108,13 @@ const menuItems = [
   }
 ]
 
-export default function RootLayout({ children }) {
+const RootLayout = ({ children }) => {
   const navigate = useNavigate()
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [menuTextLabel, setMenuTextLabel] = useState()
+
 
   const openMenu = Boolean(anchorEl);
 
@@ -120,6 +123,11 @@ export default function RootLayout({ children }) {
     if (!token) {
       navigate('/')
     }
+  }
+
+  const onClickNavigate = (index, text) => {
+    setMenuTextLabel(text.label)
+    navigate(`/${text.label}`)
   }
 
   const handleClick = (event) => {
@@ -170,12 +178,12 @@ export default function RootLayout({ children }) {
               noWrap
               component="div"
               fontFamily={'Poppins'}
-              color={"#1976d2"}>
+              color={"#1B325F"}>
               ERP Serviços
             </Typography>
             <IconButton onClick={handleClick}>
               <AccountCircleIcon
-                sx={{ color: '#1976d2', fontSize: '32px' }} />
+                sx={{ color: '#1B325F', fontSize: '32px' }} />
             </IconButton>
             <Menu
               id="basic-menu"
@@ -227,7 +235,9 @@ export default function RootLayout({ children }) {
         <List>
           {menuItems.map((text, index) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton onClick={() => navigate(`/${text.label}`)}>
+              <ListItemButton
+                sx={menuTextLabel === text.label && { borderRight: '4px solid #ddd' }}
+                onClick={(e) => onClickNavigate(index, text)}>
                 <ListItemIcon sx={{ color: "#fff" }}>
                   {text.icon}
                 </ListItemIcon>
@@ -251,3 +261,5 @@ export default function RootLayout({ children }) {
     </Box>
   );
 }
+
+export default RootLayout

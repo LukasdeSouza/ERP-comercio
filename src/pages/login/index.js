@@ -43,6 +43,7 @@ const LoginPage = observer(() => {
       sx={{
         width: '100%',
         height: '100%',
+        backgroundColor: '#1976d2'
       }}>
       <Stack
         sx={{
@@ -53,11 +54,14 @@ const LoginPage = observer(() => {
         }}>
         <Slide direction='right' in={slide} mountOnEnter>
           <Stack
-            boxShadow={3}
-            borderRadius={2}
             p={3}
+            boxShadow={6}
+            borderRadius={2}
             height={280}
+            minHeight={280}
             width={'23%'}
+            minWidth={300}
+            sx={{ backgroundColor: "#eee" }}
           >
             <Typography
               fontFamily={'Poppins'}
@@ -107,7 +111,9 @@ const LoginPage = observer(() => {
                       onClick={handleClickShowPassword}
                       onMouseDown={handleMouseDownPassword}
                       sx={{ cursor: 'pointer' }}>
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                      {showPassword ?
+                        <VisibilityOff sx={{ color: '#084f95' }} /> :
+                        <Visibility sx={{ color: '#084f95' }} />}
                     </InputAdornment>
                 }}
                 sx={{ width: '100%' }} />
@@ -126,7 +132,8 @@ const LoginPage = observer(() => {
           fontFamily={'Poppins'}
           fontSize={10}
           fontWeight={300}
-          mt={2}>
+          mt={2}
+          color={'lightgrey'}>
           Todos os direitos reservados a <b>LS Software Services</b>
         </Typography>
       </Stack>
