@@ -83,27 +83,27 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 const menuItems = [
   {
     label: 'Financeiro',
-    icon: <AccountBalanceWalletIcon />
+    icon: <AccountBalanceWalletIcon sx={{ color: '#9CC4E4' }} />
   },
   {
     label: 'Produtos',
-    icon: <InventoryIcon />
+    icon: <InventoryIcon sx={{ color: '#9CC4E4' }} />
   },
   {
     label: 'Despesas',
-    icon: <LocalAtmIcon />
+    icon: <LocalAtmIcon sx={{ color: '#9CC4E4' }} />
   },
   {
     label: 'Funcionários',
-    icon: <EngineeringIcon />
+    icon: <EngineeringIcon sx={{ color: '#9CC4E4' }} />
   },
   {
     label: 'Clientes',
-    icon: <EmojiPeopleIcon />
+    icon: <EmojiPeopleIcon sx={{ color: '#9CC4E4' }} />
   },
   {
     label: 'Contratos',
-    icon: <DescriptionIcon />
+    icon: <DescriptionIcon sx={{ color: '#9CC4E4' }} />
   }
 ]
 
@@ -210,7 +210,7 @@ export default function RootLayout({ children }) {
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            background: "#084f95",
+            background: "#1B325F",
             width: drawerWidth,
             boxSizing: 'border-box',
           },
