@@ -17,6 +17,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
 
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
@@ -95,6 +96,10 @@ const menuItems = [
   {
     label: 'Funcionários',
     icon: <EngineeringIcon />
+  },
+  {
+    label: 'Clientes',
+    icon: <EmojiPeopleIcon />
   },
   {
     label: 'Contratos',

@@ -21,6 +21,8 @@ import ExpensesPage from "./pages/expenses";
 import ExpensesEditPage from "./pages/expenses/edit";
 import ContractsPage from "./pages/invoices";
 import ContractsEditPage from "./pages/invoices/edit";
+import ClientsPage from "./pages/clients";
+import ClientsEditPage from "./pages/clients/edit";
 
 
 function App() {
@@ -49,6 +51,9 @@ function App() {
 
         <Route path="/funcionários" element={<EmployeesPage />} />
         <Route path="/funcionários/:id" element={<EmployeesEditPage />} />
+
+        <Route path="/clientes" element={<ClientsPage />} />
+        <Route path="/clientes/:id" element={<ClientsEditPage />} />
 
         <Route path="/contratos" element={<ContractsPage />} />
         <Route path="/contratos/:id" element={<ContractsEditPage />} />

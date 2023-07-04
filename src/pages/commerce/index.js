@@ -26,7 +26,7 @@ const CommercePage = () => {
           color={'#1976d2'}>
           Lista de Comércios
         </Typography>
-        <BasicTable onClickEdit={onClickEdit} />
+        {/* <BasicTable onClickEdit={onClickEdit} /> */}
       </Stack>
     </MainPage>
   )

@@ -1,6 +1,6 @@
-import { Box, Button, FormControl, IconButton, InputAdornment, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, FormControl, IconButton, InputAdornment, Slide, Stack, TextField, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton';
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import RootStoreContext from '../../rootStore';
 import LoginController from '../../controllers/LoginController';
@@ -16,6 +16,7 @@ const LoginPage = observer(() => {
 
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+  const [slide, setSlide] = useState(false)
 
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -32,6 +33,10 @@ const LoginPage = observer(() => {
     await controller.fetchList(email, password, navigateTo)
   }
 
+  useEffect(() => {
+    setSlide(true)
+  }, [])
+
   return (
     <Box
       component={'form'}
@@ -46,75 +51,77 @@ const LoginPage = observer(() => {
           justifyContent: "center",
           alignItems: "center"
         }}>
-        <Stack
-          boxShadow={3}
-          borderRadius={2}
-          p={3}
-          height={280}
-          width={'23%'}
-        >
-          <Typography
-            fontFamily={'Poppins'}
-            textAlign={'center'}
-            fontSize={20}>
-            Login ERP
-          </Typography>
-          <Typography
-            fontFamily={'Poppins'}
-            fontWeight={300}
-            textAlign={'center'}
-            variant='caption'
-            sx={{ mt: 2 }}>
-            Faça Login com <b style={{ color: "#084f95" }}>email </b>e <b style={{ color: "#084f95" }}>senha</b> cadastrados
-          </Typography>
-          <Box sx={{ mt: 2 }}>
+        <Slide direction='right' in={slide} mountOnEnter>
+          <Stack
+            boxShadow={3}
+            borderRadius={2}
+            p={3}
+            height={280}
+            width={'23%'}
+          >
             <Typography
               fontFamily={'Poppins'}
-              fontSize={10}>
-              Email
+              textAlign={'center'}
+              fontSize={20}>
+              Login ERP
             </Typography>
-            <TextField
-              variant='outlined'
-              type='email'
-              size='small'
-              value={email}
-              onKeyDown={(e) => e.key === 'Enter' && doLogin()}
-              onChange={(e) => setEmail(e.target.value)}
-              sx={{ width: '100%' }} />
-          </Box>
-          <Box sx={{ mt: 2 }}>
             <Typography
               fontFamily={'Poppins'}
-              fontSize={10}>
-              Senha
+              fontWeight={300}
+              textAlign={'center'}
+              variant='caption'
+              sx={{ mt: 2 }}>
+              Faça Login com <b style={{ color: "#084f95" }}>email </b>e <b style={{ color: "#084f95" }}>senha</b> cadastrados
             </Typography>
-            <TextField
-              variant='outlined'
-              type={showPassword ? 'text' : 'password'}
-              size='small'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && doLogin()}
-              InputProps={{
-                endAdornment:
-                  <InputAdornment position="end"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    sx={{ cursor: 'pointer' }}>
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </InputAdornment>
-              }}
-              sx={{ width: '100%' }} />
-          </Box>
-          <LoadingButton
-            variant='contained'
-            loading={loginStore.loading}
-            onClick={() => doLogin()}
-            color='primary'
-            sx={{ width: '100%', height: 40, my: 3 }}>
-            Entrar
-          </LoadingButton>
-        </Stack>
+            <Box sx={{ mt: 2 }}>
+              <Typography
+                fontFamily={'Poppins'}
+                fontSize={10}>
+                Email
+              </Typography>
+              <TextField
+                variant='outlined'
+                type='email'
+                size='small'
+                value={email}
+                onKeyDown={(e) => e.key === 'Enter' && doLogin()}
+                onChange={(e) => setEmail(e.target.value)}
+                sx={{ width: '100%' }} />
+            </Box>
+            <Box sx={{ mt: 2 }}>
+              <Typography
+                fontFamily={'Poppins'}
+                fontSize={10}>
+                Senha
+              </Typography>
+              <TextField
+                variant='outlined'
+                type={showPassword ? 'text' : 'password'}
+                size='small'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && doLogin()}
+                InputProps={{
+                  endAdornment:
+                    <InputAdornment position="end"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      sx={{ cursor: 'pointer' }}>
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </InputAdornment>
+                }}
+                sx={{ width: '100%' }} />
+            </Box>
+            <LoadingButton
+              variant='contained'
+              loading={loginStore.loading}
+              onClick={() => doLogin()}
+              color='primary'
+              sx={{ width: '100%', height: 40, my: 3 }}>
+              Entrar
+            </LoadingButton>
+          </Stack>
+        </Slide>
         <Typography
           fontFamily={'Poppins'}
           fontSize={10}

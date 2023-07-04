@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import MainPage from '../main'
-import { Button, IconButton, Link, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, IconButton, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useNavigate } from 'react-router-dom';
-import { Add } from '@mui/icons-material';
+import { Add } from '@mui/icons-material'
 
-const ExpensesPage = () => {
+
+const ClientsPage = () => {
   const navigate = useNavigate()
   const [slide, setSlide] = useState(false)
 
-  const tableHead = ['Código', 'Valor', 'Dt. de Cobrança', 'Destinatário', 'Ações']
+  const tableHead = ['Código', 'Nome', 'Data', 'Setor', 'Ações']
   const tableRow = [
-    { code: '42343', value: '1.300', date: '22/07/23', toWho: 'Mastro Postes' },
-    { code: '12314', value: '700', date: '22/07/23', toWho: 'Auto Ligas' },
-    { code: '52342', value: '75', date: '22/07/23', toWho: 'InterWebs Conexões' }
+    { code: '0001', fullName: 'Fernandinho da Costa', date: '24/08/22', sector: 'T.I' },
+    { code: '0002', fullName: 'Severino Barbosa', date: '05/05/23', sector: 'T.I' },
+    { code: '0003', fullName: 'Almondeguita da Silva', date: '04/06/22', sector: 'Limpeza' },
+    { code: '0004', fullName: 'Narnino Borges', date: '05/07/23', sector: 'Administrativo' },
+    { code: '0005', fullName: 'Pabla Vittar', date: '12/10/2021', sector: 'Cozinha' },
+    { code: '0006', fullName: 'Noguinsen Sapinoseb', date: '20/02/2020', sector: 'T.I' },
+    { code: '0007', fullName: 'Silvinha Motorista', date: '15/05/2019', sector: 'Administrativo' }
   ]
 
   const onClickEdit = (row) => {
-    navigate(`/despesas/${row.code}`)
+    navigate(`/clientes/${row.code}`, { replace: true })
   }
 
   useEffect(() => {
     setSlide(true)
   }, [])
-
 
   return (
     <MainPage>
@@ -32,13 +36,13 @@ const ExpensesPage = () => {
           fontFamily={'Poppins'}
           fontSize={18}
           color={"#1976d2"}>
-          Lista de Despesas
+          Lista de Clientes
         </Typography>
         <Button
           variant='contained'
           onClick={() => navigate('novo')}
           startIcon={<Add />}>
-          Nova Despesa
+          Novo Funcionário
         </Button>
       </Stack>
       <Table sx={{ minWidth: '100%', p: 2 }} aria-label="simple table">
@@ -52,20 +56,20 @@ const ExpensesPage = () => {
         <TableBody>
           {tableRow.map((row) => (
             <Slide direction='right' in={slide} mountOnEnter>
-              <TableRow>
+              <TableRow data-aos="fade-in">
                 <TableCell>
                   {row.code}
                 </TableCell>
                 <TableCell>
-                  <Link href={`/despesas/${row.code}`}>
-                    R${row.value}
+                  <Link href={`/clientes/${row.code}`}>
+                    {row.fullName}
                   </Link>
                 </TableCell>
                 <TableCell>
                   {row.date}
                 </TableCell>
                 <TableCell>
-                  {row.toWho}
+                  {row.sector}
                 </TableCell>
                 <TableCell>
                   <IconButton onClick={() => onClickEdit(row)}>
@@ -81,4 +85,4 @@ const ExpensesPage = () => {
   )
 }
 
-export default ExpensesPage
+export default ClientsPage

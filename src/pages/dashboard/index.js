@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MainPage from '../main'
-import { Button, Divider, IconButton, Link, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, Divider, IconButton, Link, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom'
 import BarChart from '../../components/Charts/barChart'
@@ -8,6 +8,7 @@ import { Add } from '@mui/icons-material'
 
 const FinancialPage = () => {
   const navigate = useNavigate()
+  const [slide, setSlide] = useState(false)
 
   const tableHead = ['Código', 'Valor', 'Tipo', 'Favorecido', 'Ações']
   const tableRow = [
@@ -19,6 +20,10 @@ const FinancialPage = () => {
   const onClickEdit = (row) => {
     navigate(`/financeiro/${row.code}`, { replace: true })
   }
+
+  useEffect(() => {
+    setSlide(true)
+  }, [])
 
   return (
     <MainPage>
@@ -59,27 +64,29 @@ const FinancialPage = () => {
             </TableHead>
             <TableBody>
               {tableRow.map((row) => (
-                <TableRow>
-                  <TableCell>
-                    {row.code}
-                  </TableCell>
-                  <TableCell>
-                    <Link href={`/financeiro/${row.code}`}>
-                      R${row.value}
-                    </Link>
-                  </TableCell>
-                  <TableCell>
-                    {row.toWho}
-                  </TableCell>
-                  <TableCell>
-                    {row.type}
-                  </TableCell>
-                  <TableCell>
-                    <IconButton onClick={() => onClickEdit(row)}>
-                      <MoreVertIcon color={'primary'} />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
+                <Slide direction='right' in={slide} mountOnEnter>
+                  <TableRow>
+                    <TableCell>
+                      {row.code}
+                    </TableCell>
+                    <TableCell>
+                      <Link href={`/financeiro/${row.code}`}>
+                        R${row.value}
+                      </Link>
+                    </TableCell>
+                    <TableCell>
+                      {row.toWho}
+                    </TableCell>
+                    <TableCell>
+                      {row.type}
+                    </TableCell>
+                    <TableCell>
+                      <IconButton onClick={() => onClickEdit(row)}>
+                        <MoreVertIcon color={'primary'} />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                </Slide>
               ))}
             </TableBody>
           </Table>

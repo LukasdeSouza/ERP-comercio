@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MainPage from '../main'
-import { Button, IconButton, Link, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, IconButton, Link, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Add } from '@mui/icons-material';
 
 const ProductsPage = () => {
   const navigate = useNavigate()
+  const [slide, setSlide] = useState(false)
+
   const tableHead = ['Código', 'Produto', 'Estoque', 'Valor Unitário', 'Valor Total', 'Ações']
   const tableRow = [
     { code: '42343', product: 'Cenoura', quantity: 34, unityValue: 'R$0,55', value: 'R$64.93' },
@@ -17,6 +19,10 @@ const ProductsPage = () => {
   const onClickEdit = (row) => {
     navigate(`/produtos/${row.code}`)
   }
+
+  useEffect(() => {
+    setSlide(true)
+  }, [])
 
 
   return (
@@ -45,30 +51,32 @@ const ProductsPage = () => {
         </TableHead>
         <TableBody>
           {tableRow.map((row) => (
-            <TableRow>
-              <TableCell>
-                {row.code}
-              </TableCell>
-              <TableCell>
-                <Link href={`/produtos/${row.code}`}>
-                  {row.product}
-                </Link>
-              </TableCell>
-              <TableCell>
-                {row.quantity}
-              </TableCell>
-              <TableCell>
-                {row.unityValue}
-              </TableCell>
-              <TableCell>
-                {row.value}
-              </TableCell>
-              <TableCell>
-                <IconButton onClick={onClickEdit}>
-                  <MoreVertIcon color={'primary'} />
-                </IconButton>
-              </TableCell>
-            </TableRow>
+            <Slide direction='right' in={slide} mountOnEnter>
+              <TableRow>
+                <TableCell>
+                  {row.code}
+                </TableCell>
+                <TableCell>
+                  <Link href={`/produtos/${row.code}`}>
+                    {row.product}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  {row.quantity}
+                </TableCell>
+                <TableCell>
+                  {row.unityValue}
+                </TableCell>
+                <TableCell>
+                  {row.value}
+                </TableCell>
+                <TableCell>
+                  <IconButton onClick={onClickEdit}>
+                    <MoreVertIcon color={'primary'} />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            </Slide>
           ))}
         </TableBody>
       </Table>

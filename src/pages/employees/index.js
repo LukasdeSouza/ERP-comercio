@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MainPage from '../main'
-import { Button, IconButton, Link, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, IconButton, Link, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom'
 import { Add } from '@mui/icons-material';
 
 const EmployeesPage = () => {
   const navigate = useNavigate()
+  const [slide, setSlide] = useState(false)
+
 
   const tableHead = ['Código', 'Nome', 'Função', 'Setor', 'Ações']
   const tableRow = [
@@ -22,6 +24,10 @@ const EmployeesPage = () => {
   const onClickEdit = (row) => {
     navigate(`/funcionários/${row.code}`, { replace: true })
   }
+
+  useEffect(() => {
+    setSlide(true)
+  }, [])
 
   return (
     <MainPage>
@@ -49,27 +55,29 @@ const EmployeesPage = () => {
         </TableHead>
         <TableBody>
           {tableRow.map((row) => (
-            <TableRow>
-              <TableCell>
-                {row.code}
-              </TableCell>
-              <TableCell>
-                <Link href={`/funcionários/${row.code}`}>
-                  {row.fullName}
-                </Link>
-              </TableCell>
-              <TableCell>
-                {row.function}
-              </TableCell>
-              <TableCell>
-                {row.sector}
-              </TableCell>
-              <TableCell>
-                <IconButton onClick={() => onClickEdit(row)}>
-                  <MoreVertIcon color={'primary'} />
-                </IconButton>
-              </TableCell>
-            </TableRow>
+            <Slide direction='right' in={slide} mountOnEnter>
+              <TableRow>
+                <TableCell>
+                  {row.code}
+                </TableCell>
+                <TableCell>
+                  <Link href={`/funcionários/${row.code}`}>
+                    {row.fullName}
+                  </Link>
+                </TableCell>
+                <TableCell>
+                  {row.function}
+                </TableCell>
+                <TableCell>
+                  {row.sector}
+                </TableCell>
+                <TableCell>
+                  <IconButton onClick={() => onClickEdit(row)}>
+                    <MoreVertIcon color={'primary'} />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            </Slide>
           ))}
         </TableBody>
       </Table>
