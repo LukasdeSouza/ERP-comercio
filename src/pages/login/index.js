@@ -27,7 +27,7 @@ const LoginPage = observer(() => {
   };
 
   const navigateTo = () => {
-    navigate('/financeiro')
+    navigate('/splash')
   }
   const doLogin = async () => {
     await controller.fetchList(email, password, navigateTo)
@@ -67,7 +67,7 @@ const LoginPage = observer(() => {
               fontFamily={'Poppins'}
               textAlign={'center'}
               fontSize={20}>
-              Login ERP
+              Login
             </Typography>
             <Typography
               fontFamily={'Poppins'}

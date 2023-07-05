@@ -23,6 +23,8 @@ import ContractsPage from "./pages/invoices";
 import ContractsEditPage from "./pages/invoices/edit";
 import ClientsPage from "./pages/clients";
 import ClientsEditPage from "./pages/clients/edit";
+import SplashScreenPage from "./pages/splash";
+import MyComponent from "./pages/splash";
 
 
 function App() {
@@ -41,7 +43,7 @@ function App() {
         <Route path="/despesas" element={<ExpensesPage />} />
         <Route path="/despesas/:id" element={<ExpensesEditPage />} />
 
-        <Route path="/splash" element={<FinancialEditPage />} />
+        <Route path="/splash" element={<MyComponent />} />
 
         <Route path="/comercio" element={<CommercePage />} />
         <Route path="/comercio/:id" element={<CommmerceEditPage />} />
