@@ -1,29 +1,38 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import MainPage from '../main'
 import { Button, Divider, IconButton, Link, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom'
 import BarChart from '../../components/Charts/barChart'
 import { Add } from '@mui/icons-material'
+import FinancialController from '../../controllers/FinancialController';
+import RootStoreContext from '../../rootStore';
 
 const FinancialPage = () => {
+  const { financialStore } = useContext(RootStoreContext)
+  const controller = new FinancialController(financialStore)
+
   const navigate = useNavigate()
   const [slide, setSlide] = useState(false)
 
-  const tableHead = ['Código', 'Valor', 'Tipo', 'Favorecido', 'Ações']
-  const tableRow = [
-    { code: '4231241', value: '12.000', type: 'Entrada', toWho: 'Fernandez da Cunha Adv' },
-    { code: '312314', value: '5.000', type: 'Entrada', toWho: 'Paralelepidedo Costa' },
-    { code: '093182', value: '1.200', type: 'Saída', toWho: 'Nárnia Festas' }
-  ]
+  const tableHead = ['Código', 'Valor', 'Favorecido', 'Tipo', 'Ações']
+  const tableRow = financialStore.state.financialList
+
+  const fetchList = async () => {
+    await controller.fetchList()
+  }
 
   const onClickEdit = (row) => {
-    navigate(`/financeiro/${row.code}`, { replace: true })
+    financialStore.setState('financial', row)
+    navigate(`/financeiro/${row._id}`, { replace: true })
   }
 
   useEffect(() => {
+    fetchList()
     setSlide(true)
   }, [])
+
+
 
   return (
     <MainPage>
@@ -67,10 +76,10 @@ const FinancialPage = () => {
                 <Slide direction='right' in={slide} mountOnEnter>
                   <TableRow>
                     <TableCell>
-                      {row.code}
+                      {row._id}
                     </TableCell>
                     <TableCell>
-                      <Link href={`/financeiro/${row.code}`}>
+                      <Link href={`/financeiro/${row._id}`}>
                         R${row.value}
                       </Link>
                     </TableCell>
@@ -78,7 +87,7 @@ const FinancialPage = () => {
                       {row.toWho}
                     </TableCell>
                     <TableCell>
-                      {row.type}
+                      {row.type === 'ENTRY' ? "Entrada" : "Saída"}
                     </TableCell>
                     <TableCell>
                       <IconButton onClick={() => onClickEdit(row)}>
@@ -96,4 +105,4 @@ const FinancialPage = () => {
   )
 }
 
-export default FinancialPage
+export default FinancialPage 

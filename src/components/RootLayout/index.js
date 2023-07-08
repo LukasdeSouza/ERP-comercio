@@ -178,12 +178,12 @@ const RootLayout = ({ children }) => {
               noWrap
               component="div"
               fontFamily={'Poppins'}
-              color={"#1B325F"}>
+              color={"#1976d2"}>
               ERP Serviços
             </Typography>
             <IconButton onClick={handleClick}>
               <AccountCircleIcon
-                sx={{ color: '#1B325F', fontSize: '32px' }} />
+                sx={{ color: '#1976d2', fontSize: '32px' }} />
             </IconButton>
             <Menu
               id="basic-menu"
@@ -218,7 +218,7 @@ const RootLayout = ({ children }) => {
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            background: "#1B325F",
+            background: "#1976d2",
             width: drawerWidth,
             boxSizing: 'border-box',
           },
