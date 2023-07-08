@@ -30,6 +30,12 @@ const FinancialEditPage = ({ control, name }) => {
     navigate('/financeiro', { replace: true })
   }
 
+  console.log(register)
+
+  const onSave = (data) => {
+    console.log(data)
+  }
+
 
   useEffect(() => {
     if (financialID.id !== 'novo') {
@@ -45,9 +51,7 @@ const FinancialEditPage = ({ control, name }) => {
         width={'50%'}
         padding={4}
         spacing={1}
-        onSubmit={(e) => {
-          console.log({ name })
-        }}>
+        onSubmit={handleSubmit(onSave)}>
         {financialID.id !== 'novo' &&
           <Stack>
             <Typography
@@ -105,7 +109,7 @@ const FinancialEditPage = ({ control, name }) => {
           />
         </Stack>
       </Stack>
-      <FooterEdit onClickBack={navigateBack} onClickSave={() => alert('salvar')} />
+      <FooterEdit onClickBack={navigateBack} onSave={onSave} />
     </MainPage>
   )
 }

@@ -2,7 +2,7 @@ import { Button, Divider, Stack } from '@mui/material'
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
-const FooterEdit = ({ onClickBack, onClickSave }) => {
+const FooterEdit = ({ onClickBack, onSave }) => {
 
   return (
     <Stack width={'100%'} mt={4}>
@@ -12,7 +12,7 @@ const FooterEdit = ({ onClickBack, onClickSave }) => {
           onClick={() => onClickBack()}
           sx={{ minWidth: 150 }}>Voltar</Button>
         <Button variant='contained'
-          onClick={onClickSave}
+          onClick={() => onSave()}
           sx={{ minWidth: 150 }}>Salvar</Button>
       </Stack>
     </Stack>
