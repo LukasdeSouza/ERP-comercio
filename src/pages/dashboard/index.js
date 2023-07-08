@@ -18,8 +18,8 @@ const FinancialPage = () => {
   const tableHead = ['Código', 'Valor', 'Favorecido', 'Tipo', 'Ações']
   const tableRow = financialStore.state.financialList
 
-  const fetchList = async () => {
-    await controller.fetchList()
+  const fetchList = () => {
+    controller.fetchList()
   }
 
   const onClickEdit = (row) => {
@@ -54,7 +54,7 @@ const FinancialPage = () => {
         <Typography
           fontFamily={'Poppins'}
           fontSize={14}
-          mb={2}>Entradas e Saídas de Valores</Typography>
+          mb={2}>Entrada e Saída de Valores</Typography>
         <BarChart />
         <Divider />
         <Stack my={4}>
