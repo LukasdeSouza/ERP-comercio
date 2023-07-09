@@ -1,29 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MainPage from '../main'
-import { Button, Divider, IconButton, Link, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, Divider, IconButton, Link, Skeleton, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom'
 import BarChart from '../../components/Charts/barChart'
 import { Add } from '@mui/icons-material'
 import FinancialController from '../../controllers/FinancialController';
 import RootStoreContext from '../../rootStore';
+import { observer } from 'mobx-react-lite';
 
-const FinancialPage = () => {
+const FinancialPage = observer(() => {
   const { financialStore } = useContext(RootStoreContext)
   const controller = new FinancialController(financialStore)
 
   const navigate = useNavigate()
   const [slide, setSlide] = useState(false)
 
+  const fetchList = async () => {
+    await controller.fetchList()
+  }
+
   const tableHead = ['Código', 'Valor', 'Favorecido', 'Tipo', 'Ações']
   const tableRow = financialStore.state.financialList
 
-  const fetchList = () => {
-    controller.fetchList()
-  }
 
   const onClickEdit = (row) => {
-    financialStore.setState('financial', row)
     navigate(`/financeiro/${row._id}`, { replace: true })
   }
 
@@ -74,27 +75,32 @@ const FinancialPage = () => {
             <TableBody>
               {tableRow.map((row) => (
                 <Slide direction='right' in={slide} mountOnEnter>
-                  <TableRow>
-                    <TableCell>
-                      {row._id}
-                    </TableCell>
-                    <TableCell>
-                      <Link href={`/financeiro/${row._id}`}>
-                        R${row.value}
-                      </Link>
-                    </TableCell>
-                    <TableCell>
-                      {row.toWho}
-                    </TableCell>
-                    <TableCell>
-                      {row.type === 'ENTRY' ? "Entrada" : "Saída"}
-                    </TableCell>
-                    <TableCell>
-                      <IconButton onClick={() => onClickEdit(row)}>
-                        <MoreVertIcon color={'primary'} />
-                      </IconButton>
-                    </TableCell>
-                  </TableRow>
+                  {financialStore.loading ?
+                    <TableRow>
+                      <Skeleton variant="rectangular" width={210} height={60} />
+                    </TableRow> :
+                    <TableRow>
+                      <TableCell>
+                        {row._id}
+                      </TableCell>
+                      <TableCell>
+                        <Link href={`/financeiro/${row._id}`} onClick={onClickEdit}>
+                          R${row.value}
+                        </Link>
+                      </TableCell>
+                      <TableCell>
+                        {row.toWho}
+                      </TableCell>
+                      <TableCell>
+                        {row.type === 'ENTRY' ? "Entrada" : "Saída"}
+                      </TableCell>
+                      <TableCell>
+                        <IconButton onClick={() => onClickEdit(row)}>
+                          <MoreVertIcon color={'primary'} />
+                        </IconButton>
+                      </TableCell>
+                    </TableRow>
+                  }
                 </Slide>
               ))}
             </TableBody>
@@ -104,5 +110,6 @@ const FinancialPage = () => {
     </MainPage>
   )
 }
+)
 
 export default FinancialPage 

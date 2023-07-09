@@ -86,10 +86,10 @@ const menuItems = [
     label: 'Financeiro',
     icon: <AccountBalanceWalletIcon sx={{ color: '#9CC4E4' }} />
   },
-  {
-    label: 'Produtos',
-    icon: <InventoryIcon sx={{ color: '#9CC4E4' }} />
-  },
+  // {
+  //   label: 'Produtos',
+  //   icon: <InventoryIcon sx={{ color: '#9CC4E4' }} />
+  // },
   {
     label: 'Despesas',
     icon: <LocalAtmIcon sx={{ color: '#9CC4E4' }} />

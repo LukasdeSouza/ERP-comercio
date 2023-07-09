@@ -47,9 +47,9 @@ function App() {
 
         <Route path="/comercio" element={<CommercePage />} />
         <Route path="/comercio/:id" element={<CommmerceEditPage />} />
-
+        {/* 
         <Route path="/produtos" element={<ProductsPage />} />
-        <Route path="/produtos/:id" element={<ProductsEditPage />} />
+        <Route path="/produtos/:id" element={<ProductsEditPage />} /> */}
 
         <Route path="/funcionários" element={<EmployeesPage />} />
         <Route path="/funcionários/:id" element={<EmployeesEditPage />} />

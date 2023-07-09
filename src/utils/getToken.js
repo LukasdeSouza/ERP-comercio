@@ -8,7 +8,6 @@ const headersMethodGET = {
   headers: {
     "Authorization": getToken()
   },
-  cache: 'default'
 }
 
 const headersMethodPOST = {

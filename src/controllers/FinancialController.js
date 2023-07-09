@@ -9,16 +9,22 @@ class FinancialController {
 
 
   async fetchList() {
+    await this.store.setLoading(true)
     fetch(`${BASEURL}/financial`, headersMethodGET)
       .then((data) => data.json())
       .then((financial) => {
         this.store.setState('financialList', financial)
+        this.store.setLoading(false)
+
       })
       .catch((err) => console.log(err))
+      .finally(() => {
+        this.store.setLoading(false)
+      })
   }
 
   async fetchListById(id) {
-    fetch(`${BASEURL}/financial/${id}`, headersMethodGET)
+    await fetch(`${BASEURL}/financial/${id}`, headersMethodGET)
       .then((data) => data.json())
       .then((financialId) => {
         this.store.setState('financial', financialId)
@@ -41,7 +47,7 @@ class FinancialController {
   }
 
   async onDelete(id) {
-    fetch(`${BASEURL}/financial/${id}`, headersMethodDELETE)
+    await fetch(`${BASEURL}/financial/${id}`, headersMethodDELETE)
       .then(response => {
         if (response.ok) {
           alert('Deletado com Sucesso');
