@@ -28,12 +28,12 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import PersonIcon from '@mui/icons-material/Person';
 
 import { Menu, MenuItem, Stack } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const drawerWidth = 240;
+const drawerWidth = 270;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 
@@ -113,9 +113,8 @@ const RootLayout = ({ children }) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [menuTextLabel, setMenuTextLabel] = useState()
 
-
+  const location = useLocation()
   const openMenu = Boolean(anchorEl);
 
   const isAuthenticated = () => {
@@ -126,8 +125,8 @@ const RootLayout = ({ children }) => {
   }
 
   const onClickNavigate = (index, text) => {
-    setMenuTextLabel(text.label)
-    navigate(`/${text.label}`)
+    let textLabel = text.label.toLowerCase()
+    navigate(`/${textLabel}`)
   }
 
   const handleClick = (event) => {
@@ -149,6 +148,7 @@ const RootLayout = ({ children }) => {
     localStorage.removeItem('@ERP-token');
     navigate('/', { replace: true })
   }
+
 
   useEffect(() => {
     isAuthenticated()
@@ -218,7 +218,7 @@ const RootLayout = ({ children }) => {
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            background: "#1976d2",
+            background: "#1960a7",
             width: drawerWidth,
             boxSizing: 'border-box',
           },
@@ -227,7 +227,8 @@ const RootLayout = ({ children }) => {
         anchor="left"
         open={open}
       >
-        <DrawerHeader>
+        <DrawerHeader sx={{ display: "flex", alignItems: "center" }}>
+          <Typography color={'#fff'} fontFamily={'Poppins'} flexGrow={0.4}>Logo Empresa</Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'ltr' ? <ChevronLeftIcon color='#fff' /> : <ChevronRightIcon color='#fff' />}
           </IconButton>
@@ -236,16 +237,22 @@ const RootLayout = ({ children }) => {
           {menuItems.map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton
-                sx={menuTextLabel === text.label && { borderRight: '4px solid #ddd' }}
+                sx={{
+                  ...(location.pathname.includes(text.label.toLowerCase()) && {
+                    borderRight: '4px solid',
+                    borderRightColor: '#eee',
+                    background: '#1250a7',
+                  })
+                }}
                 onClick={(e) => onClickNavigate(index, text)}>
-                <ListItemIcon sx={{ color: "#fff" }}>
+                <ListItemIcon sx={{ color: "#fff", minWidth: 48 }}>
                   {text.icon}
                 </ListItemIcon>
                 <Typography
                   fontFamily={'Poppins'}
                   fontSize={14}
-                  fontWeight={400}
-                  color={'#eee'}>
+                  fontWeight={300}
+                  color={'#fff'}>
                   {text.label}
                 </Typography>
               </ListItemButton>
