@@ -22,7 +22,7 @@ const EmployeesPage = () => {
   ]
 
   const onClickEdit = (row) => {
-    navigate(`/funcionários/${row.code}`, { replace: true })
+    navigate(`/funcionarios/${row.code}`, { replace: true })
   }
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const EmployeesPage = () => {
                   {row.code}
                 </TableCell>
                 <TableCell>
-                  <Link href={`/funcionários/${row.code}`}>
+                  <Link href={`/funcionarios/${row.code}`}>
                     {row.fullName}
                   </Link>
                 </TableCell>

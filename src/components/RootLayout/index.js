@@ -95,7 +95,7 @@ const menuItems = [
     icon: <LocalAtmIcon sx={{ color: '#9CC4E4' }} />
   },
   {
-    label: 'Funcionários',
+    label: 'Funcionarios',
     icon: <EngineeringIcon sx={{ color: '#9CC4E4' }} />
   },
   {

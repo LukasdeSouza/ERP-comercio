@@ -5,7 +5,7 @@ import MainEditTitle from '../../../components/MainEditTitle'
 const EmployeesEditPage = () => {
   return (
     <MainPage>
-      <MainEditTitle route={'funcionários'} title={'Funcionários'} />
+      <MainEditTitle route={'funcionarios'} title={'Funcionários'} />
     </MainPage>
   )
 }
