@@ -18,6 +18,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import WaveSVG from '../../assets/wave-haikei.svg'
 
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
@@ -218,47 +219,56 @@ const RootLayout = ({ children }) => {
           width: drawerWidth,
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            background: "#1960a7",
+            background: "#023",
             width: drawerWidth,
             boxSizing: 'border-box',
           },
+          '& .MuiPaper-root': {
+            display: "flex",
+            direction: 'column',
+            justifyContent: 'space-between',
+          }
         }}
         variant="persistent"
         anchor="left"
         open={open}
       >
-        <DrawerHeader sx={{ display: "flex", alignItems: "center" }}>
-          <Typography color={'#fff'} fontFamily={'Poppins'} flexGrow={0.4}>Logo Empresa</Typography>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon color='#fff' /> : <ChevronRightIcon color='#fff' />}
-          </IconButton>
-        </DrawerHeader>
-        <List>
-          {menuItems.map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton
-                sx={{
-                  ...(location.pathname.includes(text.label.toLowerCase()) && {
-                    borderRight: '4px solid',
-                    borderRightColor: '#eee',
-                    background: '#1250a7',
-                  })
-                }}
-                onClick={(e) => onClickNavigate(index, text)}>
-                <ListItemIcon sx={{ color: "#fff", minWidth: 48 }}>
-                  {text.icon}
-                </ListItemIcon>
-                <Typography
-                  fontFamily={'Poppins'}
-                  fontSize={14}
-                  fontWeight={300}
-                  color={'#fff'}>
-                  {text.label}
-                </Typography>
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        <Stack>
+          <DrawerHeader sx={{ display: "flex", alignItems: "center" }}>
+            <Typography color={'#fff'} fontFamily={'Poppins'} flexGrow={0.4}>Logo Empresa</Typography>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon sx={{ color: '#fff' }} /> : <ChevronRightIcon sx={{ color: '#fff' }} />}
+            </IconButton>
+          </DrawerHeader>
+          <List>
+            {menuItems.map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton
+                  sx={{
+                    ...(location.pathname.includes(text.label.toLowerCase()) && {
+                      borderRight: '4px solid',
+                      borderRightColor: '#eee',
+                      background: '#1250a7',
+                    })
+                  }}
+                  onClick={(e) => onClickNavigate(index, text)}>
+                  <ListItemIcon sx={{ color: "#fff", minWidth: 48 }}>
+                    {text.icon}
+                  </ListItemIcon>
+                  <Typography
+                    fontFamily={'Poppins'}
+                    fontSize={14}
+                    fontWeight={300}
+                    color={'#fff'}>
+                    {text.label}
+                  </Typography>
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Stack>
+
+        <img src={WaveSVG} alt="" />
       </Drawer>
       <Main open={open}>
         <DrawerHeader />

@@ -79,6 +79,23 @@ const FinancialEditPage = observer(({ control, name }) => {
           <Typography
             variant='caption'
             fontFamily={'Poppins'}
+            fontWeight={400}
+          >Tipo</Typography>
+          <Select
+            size='small'
+            value={valueType === 'OUT' ? 'SAÍDA' : 'ENTRADA'}
+            onChange={(e) => setValueType(e.target.value)}
+            placeholder='Entrada de Valor ou Saída de Valor'
+            sx={{ width: '50%' }}
+          >
+            <MenuItem value={'SAÍDA'}>SAÍDA</MenuItem>
+            <MenuItem value={"ENTRADA"}>ENTRADA</MenuItem>
+          </Select>
+        </Stack>
+        <Stack>
+          <Typography
+            variant='caption'
+            fontFamily={'Poppins'}
             fontWeight={400}>Valor</Typography>
           <TextField
             size='small'
@@ -93,23 +110,6 @@ const FinancialEditPage = observer(({ control, name }) => {
                 </InputAdornment>
             }}
           />
-        </Stack>
-        <Stack>
-          <Typography
-            variant='caption'
-            fontFamily={'Poppins'}
-            fontWeight={400}
-          >Tipo</Typography>
-          <Select
-            size='small'
-            value={valueType === 'OUT' ? 'SAÍDA' : 'ENTRADA'}
-            onChange={(e) => setValueType(e.target.value)}
-            placeholder='Entrada de Valor ou Saída de Valor'
-            sx={{ width: '50%' }}
-          >
-            <MenuItem value={'SAÍDA'}>SAÍDA</MenuItem>
-            <MenuItem value={"ENTRADA"}>ENTRADA</MenuItem>
-          </Select>
         </Stack>
         <Stack>
           <Typography
