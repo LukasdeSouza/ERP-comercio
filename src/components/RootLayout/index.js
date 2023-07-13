@@ -270,6 +270,7 @@ const RootLayout = ({ children }) => {
                       borderRight: '4px solid',
                       borderRightColor: '#eee',
                       background: '#1250a7',
+                      opacity: 0.9
                     })
                   }}
                   onClick={(e) => onClickNavigate(index, text)}>
