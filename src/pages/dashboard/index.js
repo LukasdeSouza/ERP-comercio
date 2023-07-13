@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import MainPage from '../main'
-import { Button, Divider, IconButton, Link, Skeleton, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
+import { Button, CircularProgress, Divider, IconButton, Link, Skeleton, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom'
 import BarChart from '../../components/Charts/barChart'
@@ -23,8 +23,14 @@ const FinancialPage = observer(() => {
   const tableHead = ['Código', 'Valor', 'Favorecido', 'Tipo', 'Ações']
   const tableRow = financialStore.state.financialList
 
+  const onClickNewRegister = () => {
+    financialStore.setState('financial', {})
+    navigate('novo')
+  }
+
 
   const onClickEdit = (row) => {
+    financialStore.setState('financial', row)
     navigate(`/financeiro/${row._id}`, { replace: true })
   }
 
@@ -47,7 +53,7 @@ const FinancialPage = observer(() => {
           </Typography>
           <Button
             variant='contained'
-            onClick={() => navigate('novo')}
+            onClick={onClickNewRegister}
             startIcon={<Add />}>
             Nova Entrada
           </Button>
@@ -76,17 +82,23 @@ const FinancialPage = observer(() => {
               {tableRow.map((row) => (
                 <Slide direction='right' in={slide} mountOnEnter>
                   {financialStore.loading ?
-                    <TableRow>
-                      <Skeleton variant="rectangular" width={210} height={60} />
-                    </TableRow> :
-                    <TableRow>
+                    <Stack alignItems={'center'} justifyContent={'center'}>
+                      <CircularProgress />
+                    </Stack> :
+                    <TableRow
+                      onClick={() => onClickEdit(row)}
+                      sx={{
+                        cursor: 'pointer',
+                        '&:hover': {
+                          background: '#f4f9ff',
+                          transition: 'all ease 0.4s'
+                        }
+                      }}>
                       <TableCell>
                         {row._id}
                       </TableCell>
                       <TableCell>
-                        <Link href={`/financeiro/${row._id}`} onClick={onClickEdit}>
-                          R${row.value}
-                        </Link>
+                        R${row.value}
                       </TableCell>
                       <TableCell>
                         {row.toWho}

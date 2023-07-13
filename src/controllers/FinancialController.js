@@ -9,8 +9,9 @@ class FinancialController {
 
 
   async fetchList() {
-    await this.store.setLoading(true)
-    fetch(`${BASEURL}/financial`, headersMethodGET)
+    this.store.setLoading(true)
+
+    await fetch(`${BASEURL}/financial`, headersMethodGET)
       .then((data) => data.json())
       .then((financial) => {
         this.store.setState('financialList', financial)
@@ -24,25 +25,36 @@ class FinancialController {
   }
 
   async fetchListById(id) {
+    this.store.setLoading(true)
+
     await fetch(`${BASEURL}/financial/${id}`, headersMethodGET)
       .then((data) => data.json())
-      .then((financialId) => {
-        this.store.setState('financial', financialId)
+      .then((financial) => {
+        this.store.setState('financial', financial)
       })
       .catch((err) => console.log(err))
+      .finally(() => {
+        this.store.setLoading(false)
+      })
   }
 
-  async onSave(body) {
-    fetch(`${BASEURL}/financial`, {
+  async onSave(body, callBack) {
+    this.store.setLoading(true)
+
+    await fetch(`${BASEURL}/financial`, {
       ...headersMethodPOST,
-      body: this.store.state.financial
+      body
     })
       .then((data) => data.json)
       .then(result => {
         console.log('Success:', result);
+        callBack()
       })
       .catch(error => {
         console.error('Error:', error);
+      })
+      .finally(() => {
+        this.store.setLoading(false)
       })
   }
 

@@ -16,21 +16,21 @@ const FinancialEditPage = observer(({ control, name }) => {
   const navigate = useNavigate()
   const financialID = useParams()
 
+  const fetchById = async () => {
+    await controller.fetchListById(financialID.id)
+  }
 
   const navigateBack = () => {
     navigate('/financeiro', { replace: true })
   }
 
-  const onSubmit = async () => {
-    // console.log(codeValue.fixedCosts)
-    // await controller.onSave()
-  };
+  const onSave = () => {
+    controller.onSave()
+  }
 
 
   useEffect(() => {
-    if (financialID.id !== 'novo') {
-      controller.fetchListById(financialID.id)
-    }
+    fetchById()
 
     return (
       financialStore.setState('financial', {})
@@ -46,12 +46,10 @@ const FinancialEditPage = observer(({ control, name }) => {
       >
         <Formik
           initialValues={{
-            code: financialStore.state.financial._id,
-            value: parseInt(financialStore.state.financial?.value),
-            type: financialStore.state.financial.type === 'ENTRY' ?
-              'Entrada de Valor' :
-              'Saída de Valor',
-            toWho: financialStore.state.financial.toWho,
+            code: financialStore.state.financial?._id,
+            value: financialStore.state.financial?.value,
+            type: financialStore.state.financial?.type,
+            toWho: financialStore.state.financial?.toWho,
           }}
           validate={values => {
             const errors = {};
@@ -67,6 +65,7 @@ const FinancialEditPage = observer(({ control, name }) => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
+            controller.onSave(JSON.stringify(values), navigateBack())
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
@@ -113,7 +112,7 @@ const FinancialEditPage = observer(({ control, name }) => {
                     label='Tipo'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.type}
+                    value={values.type === 'ENTRY' ? 'Entrada de Valor' : values.type === 'OUT' ? 'Saída de Valor' : ''}
                     sx={{ width: '30%' }}
                   />
                   <Typography variant='caption' my={0} py={0} color={'red'}>
