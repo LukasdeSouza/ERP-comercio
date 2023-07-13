@@ -18,6 +18,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import EmojiPeopleIcon from '@mui/icons-material/EmojiPeople';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import Slide from '@mui/material/Slide';
 import WaveSVG from '../../assets/wave-haikei.svg'
 
 import InboxIcon from '@mui/icons-material/MoveToInbox';
@@ -28,11 +33,12 @@ import EngineeringIcon from '@mui/icons-material/Engineering';
 import DescriptionIcon from '@mui/icons-material/Description';
 import PersonIcon from '@mui/icons-material/Person';
 
-import { Menu, MenuItem, Stack } from '@mui/material';
+import { Button, DialogTitle, Menu, MenuItem, Stack } from '@mui/material';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { LogoutOutlined } from '@mui/icons-material';
 
 const drawerWidth = 270;
 
@@ -112,11 +118,17 @@ const menuItems = [
 const RootLayout = ({ children }) => {
   const navigate = useNavigate()
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [openDrawer, setOpenDrawer] = React.useState(true);
+  const [openDialog, setOpenDialog] = React.useState(false)
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const location = useLocation()
   const openMenu = Boolean(anchorEl);
+
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+
 
   const isAuthenticated = () => {
     let token = localStorage.getItem('@ERP-token')
@@ -138,12 +150,21 @@ const RootLayout = ({ children }) => {
   };
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    setOpenDrawer(true);
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    setOpenDrawer(false);
   };
+
+  const handleDialogOpen = () => {
+    handleClose()
+    setOpenDialog(true)
+  }
+
+  const handleDialogClose = () => {
+    setOpenDialog(false)
+  }
 
   const onClickLogout = () => {
     localStorage.removeItem('@ERP-token');
@@ -158,14 +179,14 @@ const RootLayout = ({ children }) => {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open} elevation={0}>
+      <AppBar position="fixed" open={openDrawer} elevation={0}>
         <Toolbar sx={{ background: '#fff' }} >
           <IconButton
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
+            sx={{ mr: 2, ...(openDrawer && { display: 'none' }) }}
           >
             <MenuIcon color='primary' />
           </IconButton>
@@ -206,7 +227,7 @@ const RootLayout = ({ children }) => {
                 Configurações
               </MenuItem>
               <MenuItem
-                onClick={onClickLogout}
+                onClick={handleDialogOpen}
                 sx={{ fontFamily: 'Poppins', fontSize: 14, fontWeight: 300 }}>
                 Sair
               </MenuItem>
@@ -231,7 +252,7 @@ const RootLayout = ({ children }) => {
         }}
         variant="persistent"
         anchor="left"
-        open={open}
+        open={openDrawer}
       >
         <Stack>
           <DrawerHeader sx={{ display: "flex", alignItems: "center" }}>
@@ -270,10 +291,33 @@ const RootLayout = ({ children }) => {
 
         <img src={WaveSVG} alt="" />
       </Drawer>
-      <Main open={open}>
+      <Main open={openDrawer}>
         <DrawerHeader />
         {children}
       </Main>
+      <Dialog
+        open={openDialog}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleDialogClose}
+        PaperProps={{
+          sx: { padding: 1, borderRadius: 2 }
+        }}
+        aria-describedby="alert-dialog-slide-description"
+      >
+        <DialogTitle>{"Tem Certeza que deseja Sair ?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-slide-description">
+            Ao sair as informações que não foram salvas serão desfeitas.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button variant='outlined' onClick={handleDialogClose}>Fechar</Button>
+          <Button variant='contained'
+            startIcon={<LogoutOutlined />}
+            onClick={onClickLogout}>Sair (Logout)</Button>
+        </DialogActions>
+      </Dialog>
       <Toaster position='top-center' />
     </Box>
   );
