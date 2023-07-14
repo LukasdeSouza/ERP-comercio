@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, IconButton, InputAdornment, Slide, Stack, TextField, Typography } from '@mui/material'
+import { Box, Button, FormControl, IconButton, InputAdornment, Slide, Stack, TextField, Tooltip, Typography } from '@mui/material'
 import LoadingButton from '@mui/lab/LoadingButton';
 import React, { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -6,8 +6,7 @@ import RootStoreContext from '../../rootStore';
 import LoginController from '../../controllers/LoginController';
 import { observer } from 'mobx-react-lite';
 import { Toaster } from 'react-hot-toast';
-import { RemoveRedEye, Visibility, VisibilityOff } from '@mui/icons-material';
-import LSSoftwareLogo from '../../assets/LS SOFTWARE SERVICES LOGO SVG.svg'
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 const LoginPage = observer(() => {
   const navigate = useNavigate()
@@ -40,17 +39,18 @@ const LoginPage = observer(() => {
   return (
     <Box
       component={'form'}
+      onSubmit={doLogin}
       sx={{
         width: '100%',
         height: '100%',
-        backgroundColor: '#1976d2'
+        backgroundColor: '#1976d2',
       }}>
       <Stack
         sx={{
           width: 'inherit',
           height: 'inherit',
           justifyContent: "center",
-          alignItems: "center"
+          alignItems: "center",
         }}>
         <Slide direction='right' in={slide} mountOnEnter>
           <Stack
@@ -77,21 +77,24 @@ const LoginPage = observer(() => {
               sx={{ mt: 2 }}>
               Faça Login com <b style={{ color: "#084f95" }}>email </b>e <b style={{ color: "#084f95" }}>senha</b> cadastrados
             </Typography>
-            <Box sx={{ mt: 2 }}>
-              <Typography
-                fontFamily={'Poppins'}
-                fontSize={10}>
-                Email
-              </Typography>
-              <TextField
-                variant='outlined'
-                type='email'
-                size='small'
-                value={email}
-                onKeyDown={(e) => e.key === 'Enter' && doLogin()}
-                onChange={(e) => setEmail(e.target.value)}
-                sx={{ width: '100%' }} />
-            </Box>
+            <Tooltip
+              title={'👇 Digite seu e-mail cadastrado pelo Administrador'}
+              placement='top-start'>
+              <Box sx={{ mt: 2 }}>
+                <Typography
+                  fontFamily={'Poppins'}
+                  fontSize={10}>
+                  Email
+                </Typography>
+                <TextField
+                  variant='outlined'
+                  size='small'
+                  value={email}
+                  onKeyDown={(e) => e.key === 'Enter' && doLogin()}
+                  onChange={(e) => setEmail(e.target.value)}
+                  sx={{ width: '100%' }} />
+              </Box>
+            </Tooltip>
             <Box sx={{ mt: 2 }}>
               <Typography
                 fontFamily={'Poppins'}
@@ -107,14 +110,19 @@ const LoginPage = observer(() => {
                 onKeyDown={(e) => e.key === 'Enter' && doLogin()}
                 InputProps={{
                   endAdornment:
-                    <InputAdornment position="end"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
-                      sx={{ cursor: 'pointer' }}>
-                      {showPassword ?
-                        <VisibilityOff sx={{ color: '#084f95' }} /> :
-                        <Visibility sx={{ color: '#084f95' }} />}
-                    </InputAdornment>
+                    <Tooltip
+                      title={showPassword ? 'Ocultar Senha Digitada' : '👁️‍🗨️ Ver Senha Digitada'}
+                      followCursor
+                    >
+                      <InputAdornment position="end"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        sx={{ cursor: 'pointer' }}>
+                        {showPassword ?
+                          <VisibilityOff sx={{ color: '#084f95' }} /> :
+                          <Visibility sx={{ color: '#084f95' }} />}
+                      </InputAdornment>
+                    </Tooltip>
                 }}
                 sx={{ width: '100%' }} />
             </Box>

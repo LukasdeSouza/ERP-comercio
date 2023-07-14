@@ -6,13 +6,13 @@ import SettingsPage from "./pages/settings";
 import InvoicesPage from "./pages/invoices";
 import AnnouncementsPage from "./pages/announcements";
 import CommercePage from "./pages/commerce";
-import FinancialPage from "./pages/dashboard";
+import FinancialPage from "./pages/financial";
 
 import ProductsPage from "./pages/products";
 import EmployeesPage from "./pages/employees";
 import LoginPage from "./pages/login";
 import CommmerceEditPage from "./pages/commerce/edit";
-import FinancialEditPage from "./pages/dashboard/edit";
+import FinancialEditPage from "./pages/financial/edit";
 import ProductsEditPage from "./pages/products/edit";
 import EmployeesEditPage from "./pages/employees/edit";
 import InvoicesEditPage from "./pages/invoices/edit";
