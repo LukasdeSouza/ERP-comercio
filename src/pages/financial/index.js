@@ -3,11 +3,13 @@ import MainPage from '../main'
 import { Button, CircularProgress, Divider, IconButton, Link, Skeleton, Slide, Stack, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { useNavigate } from 'react-router-dom'
-import BarChart from '../../components/Charts/barChart'
 import { Add } from '@mui/icons-material'
 import FinancialController from '../../controllers/FinancialController';
 import RootStoreContext from '../../rootStore';
 import { observer } from 'mobx-react-lite';
+import LineChartComponent from '../../components/Charts/lineChart';
+// import { renderLineChart } from '../../components/Charts/lineChart';
+// import renderLineChart from '../../components/Charts/lineChart';
 
 const FinancialPage = observer(() => {
   const { financialStore } = useContext(RootStoreContext)
@@ -40,7 +42,6 @@ const FinancialPage = observer(() => {
   }, [])
 
 
-
   return (
     <MainPage>
       <Stack width={'100%'}>
@@ -58,11 +59,8 @@ const FinancialPage = observer(() => {
             Nova Entrada
           </Button>
         </Stack>
-        <Typography
-          fontFamily={'Poppins'}
-          fontSize={14}
-          mb={2}>Entrada e Saída de Valores</Typography>
-        <BarChart />
+        {/* <ChartBarChart dataValues={financialStore.state.financialList} /> */}
+        <LineChartComponent />
         <Divider />
         <Stack my={4}>
           <Typography

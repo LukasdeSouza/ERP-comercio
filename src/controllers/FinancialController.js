@@ -1,4 +1,3 @@
-import { error } from "highcharts"
 import { BASEURL } from "../utils/baseUrl"
 import { getToken, headersMethod, headersMethodDELETE, headersMethodGET, headersMethodPATCH, headersMethodPOST } from "../utils/getToken"
 import { toast } from "react-hot-toast"
