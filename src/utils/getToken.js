@@ -18,6 +18,14 @@ const headersMethodPOST = {
   }
 }
 
+const headersMethodPATCH = {
+  method: 'PATCH',
+  headers: {
+    'Content-Type': 'application/json',
+    "Authorization": getToken()
+  }
+}
+
 const headersMethodDELETE = {
   method: 'DELETE',
   headers: {
@@ -26,4 +34,4 @@ const headersMethodDELETE = {
   }
 }
 
-export { getToken, headersMethodGET, headersMethodPOST, headersMethodDELETE }
+export { getToken, headersMethodGET, headersMethodPOST, headersMethodPATCH, headersMethodDELETE }

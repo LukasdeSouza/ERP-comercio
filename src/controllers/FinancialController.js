@@ -1,5 +1,7 @@
+import { error } from "highcharts"
 import { BASEURL } from "../utils/baseUrl"
-import { getToken, headersMethod, headersMethodDELETE, headersMethodGET, headersMethodPOST } from "../utils/getToken"
+import { getToken, headersMethod, headersMethodDELETE, headersMethodGET, headersMethodPATCH, headersMethodPOST } from "../utils/getToken"
+import { toast } from "react-hot-toast"
 
 class FinancialController {
 
@@ -45,17 +47,36 @@ class FinancialController {
       ...headersMethodPOST,
       body
     })
-      .then((data) => data.json)
+      .then((data) => data.json())
       .then(result => {
-        console.log('Success:', result);
         callBack()
+        toast.success('Salvo com Sucesso!')
       })
       .catch(error => {
         console.error('Error:', error);
+        toast.error('Erro ao Salvar Informações!')
       })
       .finally(() => {
         this.store.setLoading(false)
       })
+  }
+
+  async onSaveEdit(body, callBack) {
+    const id = this.store.state.financial?._id
+    this.store.setLoading(true)
+
+    await fetch(`${BASEURL}/financial/${id}`, {
+      ...headersMethodPATCH,
+      body
+    })
+      .then((data) => data.json())
+      .then((result) => {
+        console.log('UpdateSucessfully', result);
+        callBack()
+      })
+      .catch(error => console.log('Error:', error)
+      )
+      .finally(() => this.store.setLoading(false))
   }
 
   async onDelete(id) {

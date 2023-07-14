@@ -82,9 +82,9 @@ const FinancialPage = observer(() => {
               {tableRow.map((row) => (
                 <Slide direction='right' in={slide} mountOnEnter>
                   {financialStore.loading ?
-                    <Stack alignItems={'center'} justifyContent={'center'}>
-                      <CircularProgress />
-                    </Stack> :
+                    <TableRow sx={{ width: '100%' }}>
+                      <Skeleton height={40} />
+                    </TableRow> :
                     <TableRow
                       onClick={() => onClickEdit(row)}
                       sx={{

@@ -24,8 +24,14 @@ const FinancialEditPage = observer(({ control, name }) => {
     navigate('/financeiro', { replace: true })
   }
 
-  const onSave = () => {
-    controller.onSave()
+  console.log(financialID)
+
+  const onSave = (values) => {
+    if (financialID.id !== 'novo') {
+      controller.onSaveEdit(values, navigateBack)
+    } else {
+      controller.onSave(values, navigateBack)
+    }
   }
 
 
@@ -65,7 +71,7 @@ const FinancialEditPage = observer(({ control, name }) => {
             return errors;
           }}
           onSubmit={(values, { setSubmitting }) => {
-            controller.onSave(JSON.stringify(values), navigateBack())
+            onSave(JSON.stringify(values))
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2));
               setSubmitting(false);
