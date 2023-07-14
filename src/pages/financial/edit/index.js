@@ -79,10 +79,6 @@ const FinancialEditPage = observer(({ control, name }) => {
           }}
           onSubmit={(values, { setSubmitting }) => {
             onSave(JSON.stringify(values))
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2));
-              setSubmitting(false);
-            }, 400);
           }}
         >
           {({ values, touched, errors, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
@@ -123,9 +119,10 @@ const FinancialEditPage = observer(({ control, name }) => {
                     size='small'
                     name='type'
                     label='Tipo'
+                    placeholder='Entrada ou Saída de Valores'
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    value={values.type === 'ENTRY' ? 'Entrada de Valor' : values.type === 'OUT' ? 'Saída de Valor' : ''}
+                    value={values.type}
                     sx={{ width: '30%' }}
                   />
                   <Typography variant='caption' my={0} py={0} color={'red'}>

@@ -25,6 +25,7 @@ import ClientsPage from "./pages/clients";
 import ClientsEditPage from "./pages/clients/edit";
 import SplashScreenPage from "./pages/splash";
 import MyComponent from "./pages/splash";
+import { Toaster } from "react-hot-toast";
 
 
 function App() {
@@ -62,6 +63,8 @@ function App() {
 
         <Route path="*" element={<Page404 />} />
       </Routes>
+      <Toaster position='top-center' />
+
     </BrowserRouter>
   );
 }

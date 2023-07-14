@@ -319,7 +319,6 @@ const RootLayout = ({ children }) => {
             onClick={onClickLogout}>Sair (Logout)</Button>
         </DialogActions>
       </Dialog>
-      <Toaster position='top-center' />
     </Box>
   );
 }
