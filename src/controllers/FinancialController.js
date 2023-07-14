@@ -79,11 +79,14 @@ class FinancialController {
       .finally(() => this.store.setLoading(false))
   }
 
-  async onDelete(id) {
+  async onDelete(callBack) {
+    let id = this.store.state.financial?._id
+
     await fetch(`${BASEURL}/financial/${id}`, headersMethodDELETE)
       .then(response => {
         if (response.ok) {
-          alert('Deletado com Sucesso');
+          toast.error('Excluído com Sucesso!')
+          callBack()
         } else {
           throw new Error('Erro ao Deletar');
         }

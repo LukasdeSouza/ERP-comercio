@@ -34,6 +34,10 @@ const FinancialEditPage = observer(({ control, name }) => {
     }
   }
 
+  const onClickDelete = () => {
+    controller.onDelete(navigateBack)
+  }
+
 
   useEffect(() => {
     fetchById()
@@ -45,7 +49,10 @@ const FinancialEditPage = observer(({ control, name }) => {
 
   return (
     <MainPage>
-      <MainEditTitle route={'financeiro'} title={'Financeiro'} />
+      <MainEditTitle
+        route={'financeiro'}
+        title={'Financeiro'}
+        onClickDelete={onClickDelete} />
       <Stack
         padding={4}
         spacing={1}

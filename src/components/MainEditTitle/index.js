@@ -3,7 +3,7 @@ import { Button, IconButton, Stack, Typography } from '@mui/material'
 import React from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
-const MainEditTitle = ({ route, title }) => {
+const MainEditTitle = ({ route, title, onClickDelete }) => {
   const navigate = useNavigate()
   const params = useParams()
 
@@ -17,13 +17,16 @@ const MainEditTitle = ({ route, title }) => {
           {params.id === 'novo' ? `Novo ${title}` : `Editar ${title}`}
         </Typography>
       </Stack>
-      <Button
-        variant='contained'
-        startIcon={<Delete />}
-        sx={{ fontFamily: "Poppins", fontWeight: 300, background: '#dd3d3d' }}>
-        Apagar Registro
-      </Button>
-    </Stack>
+      {params.id !== 'novo' &&
+        < Button
+          variant='contained'
+          startIcon={<Delete />}
+          onClick={onClickDelete}
+          sx={{ fontFamily: "Poppins", fontWeight: 300, background: '#dd3d3d' }}>
+          Apagar Registro
+        </Button>
+      }
+    </Stack >
   )
 }
 
