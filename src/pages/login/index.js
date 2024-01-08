@@ -142,7 +142,7 @@ const LoginPage = observer(() => {
           fontWeight={300}
           mt={2}
           color={'lightgrey'}>
-          Todos os direitos reservados a <b>LS Software Services</b>
+          Todos os direitos reservados a <b>Firmby</b>
         </Typography>
       </Stack>
       <Toaster />
