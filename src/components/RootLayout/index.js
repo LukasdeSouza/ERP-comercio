@@ -131,10 +131,10 @@ const RootLayout = ({ children }) => {
 
 
   const isAuthenticated = () => {
-    let token = localStorage.getItem('@ERP-token')
-    if (!token) {
-      navigate('/')
-    }
+    // let token = localStorage.getItem('@ERP-token')
+    // if (!token) {
+    //   navigate('/')
+    // }
   }
 
   const onClickNavigate = (index, text) => {
